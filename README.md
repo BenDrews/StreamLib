@@ -22,6 +22,8 @@ GraphQL Server (Golang)
 - When the vods become available, publishes the relevant timestamps.
 - Fulfills search requests.
 
+![Component Diagram](https://www.github.com/BenDrews/StreamLib/images/componentDiagram.png)
+
 ## Technical Details
 - A streamer downloads our Twitch extension and connects it to their Legends of Runeterra account and their twitch account.
 When the streamer begins streaming, we periodically us the “card positions” client API to determine when a game starts. At this point, we associate the start of the game with current stream timestamp and use the “active deck” client API endpoint to pull the currently active decklist. 
