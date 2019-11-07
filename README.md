@@ -22,7 +22,7 @@ GraphQL Server (Golang)
 - When the vods become available, publishes the relevant timestamps.
 - Fulfills search requests.
 
-![Component Diagram](https://www.github.com/BenDrews/StreamLib/images/componentDiagram.png)
+![Component Diagram](https://www.github.com/BenDrews/StreamLib/blob/master/images/componentDiagram.png)
 
 ## Technical Details
 - A streamer downloads our Twitch extension and connects it to their Legends of Runeterra account and their twitch account.
