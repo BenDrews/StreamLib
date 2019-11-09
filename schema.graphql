@@ -50,3 +50,29 @@ type Channel {
   mature : Boolean
   logo : String
 }
+
+query search($raw_search : String) {
+  results : [Game]
+}
+
+input RecordGameInput {
+  start_time : Int
+  end_time : Int
+  result : String
+  player_name : String
+  opponent_name : String
+  stream_twitch_id : Int
+  deckcode : String
+  allied_cards_seen : [String]
+  enemy_cards_seen : [String]
+}
+
+input ReportStreamEnded {
+  stream_twitch_id : Int
+}
+
+type Mutation {
+  recordGame(params: RecordGameInput) : Game
+  reportStreamEnded(params: ReportStreamEndedInput) : Stream
+  removeChannel(channel_id: Int) : Channel
+}
