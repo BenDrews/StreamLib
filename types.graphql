@@ -1,0 +1,70 @@
+# The following types define the data model of the example service
+# based on which the GraphQL API is generated
+
+type File @model {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
+
+type User @model {
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
+
+type Game @model {
+  id: ID! @isUnique
+  startTime: Int
+  endTime: Int
+  result: String
+  playerName: String
+  opponentName: String
+  stream: Stream @relation(name: "StreamOnGame")
+  deck: Deck @relation(name: "DeckOnGame")
+  alliedCardsSeen: [String!]
+  enemyCardsSeen: [String!]
+}
+
+type Deck @model {
+  id: ID! @isUnique
+  factions: [String!]
+  deckcode: String
+  archetype: Archetype @relation(name: "ArchetypeOnDeck")
+  games: [Game!]! @relation(name: "DeckOnGame")
+}
+
+type Archetype @model {
+  id: ID! @isUnique
+  name: String
+  stockList: String
+  decks: [Deck!]! @relation(name: "ArchetypeOnDeck")
+}
+
+type Stream @model {
+  id: ID! @isUnique
+  twitchID: Int
+  url: String
+  title: String
+  channel: Channel @relation(name: "ChannelOnStream")
+  vodAvailabe: Boolean
+  vodLastChecked: Int
+  preview: String
+  games: [Game!]! @relation(name: "StreamOnGame")
+}
+
+type Channel @model {
+  id: ID! @isUnique
+  twitchID: Int
+  url: String
+  name: String
+  language: String
+  mature: Boolean
+  logo: String
+  streams: [Stream!]! @relation(name: "ChannelOnStream")
+}

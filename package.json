@@ -1,0 +1,8 @@
+{
+  "name": "streamlib",
+  "version": "1.0.0",
+  "description": "My Graphcool Service",
+  "dependencies": {
+    "runeterra": "0.0.7"
+  }
+}
