@@ -1,0 +1,2464 @@
+input AddToArchetypeOnDeckDeckInput {
+  archetypeArchetypeId: ID!
+  decksDeckId: ID!
+  clientMutationId: String!
+}
+
+type AddToArchetypeOnDeckPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  decksDeck: Deck
+  archetypeArchetype: Archetype
+  decksDeckEdge: DeckEdge
+  archetypeArchetypeEdge: ArchetypeEdge
+}
+
+type AddToChannelOnStreamPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  streamsStream: Stream
+  channelChannel: Channel
+  streamsStreamEdge: StreamEdge
+  channelChannelEdge: ChannelEdge
+}
+
+input AddToChannelOnStreamStreamInput {
+  channelChannelId: ID!
+  streamsStreamId: ID!
+  clientMutationId: String!
+}
+
+input AddToDeckOnGameGameInput {
+  deckDeckId: ID!
+  gamesGameId: ID!
+  clientMutationId: String!
+}
+
+type AddToDeckOnGamePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  gamesGame: Game
+  deckDeck: Deck
+  gamesGameEdge: GameEdge
+  deckDeckEdge: DeckEdge
+}
+
+input AddToStreamOnGameGameInput {
+  streamStreamId: ID!
+  gamesGameId: ID!
+  clientMutationId: String!
+}
+
+type AddToStreamOnGamePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  gamesGame: Game
+  streamStream: Stream
+  gamesGameEdge: GameEdge
+  streamStreamEdge: StreamEdge
+}
+
+type Archetype implements Node {
+  decks(filter: DeckFilter, orderBy: DeckOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): DeckConnection
+  id: ID!
+  name: String
+  stockList: String
+}
+
+"""A connection to a list of items."""
+type ArchetypeConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ArchetypeEdge]
+
+  """Count of filtered result set without considering pagination arguments"""
+  count: Int!
+}
+
+input ArchetypedecksDeck {
+  deckcode: String
+  factions: [String!]
+  gamesIds: [ID!]
+  games: [DeckgamesGame!]
+}
+
+"""An edge in a connection."""
+type ArchetypeEdge {
+  """The item at the end of the edge."""
+  node: Archetype!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+input ArchetypeFilter {
+  """Logical AND on all given filters."""
+  AND: [ArchetypeFilter!]
+
+  """Logical OR on all given filters."""
+  OR: [ArchetypeFilter!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  stockList: String
+
+  """All values that are not equal to given value."""
+  stockList_not: String
+
+  """All values that are contained in given list."""
+  stockList_in: [String!]
+
+  """All values that are not contained in given list."""
+  stockList_not_in: [String!]
+
+  """All values less than the given value."""
+  stockList_lt: String
+
+  """All values less than or equal the given value."""
+  stockList_lte: String
+
+  """All values greater than the given value."""
+  stockList_gt: String
+
+  """All values greater than or equal the given value."""
+  stockList_gte: String
+
+  """All values containing the given string."""
+  stockList_contains: String
+
+  """All values not containing the given string."""
+  stockList_not_contains: String
+
+  """All values starting with the given string."""
+  stockList_starts_with: String
+
+  """All values not starting with the given string."""
+  stockList_not_starts_with: String
+
+  """All values ending with the given string."""
+  stockList_ends_with: String
+
+  """All values not ending with the given string."""
+  stockList_not_ends_with: String
+  decks_every: DeckFilter
+  decks_some: DeckFilter
+  decks_none: DeckFilter
+}
+
+enum ArchetypeOrderBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  stockList_ASC
+  stockList_DESC
+}
+
+type Channel implements Node {
+  id: ID!
+  language: String
+  logo: String
+  mature: Boolean
+  name: String
+  streams(filter: StreamFilter, orderBy: StreamOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): StreamConnection
+  twitchID: Int
+  url: String
+}
+
+"""A connection to a list of items."""
+type ChannelConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ChannelEdge]
+
+  """Count of filtered result set without considering pagination arguments"""
+  count: Int!
+}
+
+"""An edge in a connection."""
+type ChannelEdge {
+  """The item at the end of the edge."""
+  node: Channel!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+input ChannelFilter {
+  """Logical AND on all given filters."""
+  AND: [ChannelFilter!]
+
+  """Logical OR on all given filters."""
+  OR: [ChannelFilter!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  language: String
+
+  """All values that are not equal to given value."""
+  language_not: String
+
+  """All values that are contained in given list."""
+  language_in: [String!]
+
+  """All values that are not contained in given list."""
+  language_not_in: [String!]
+
+  """All values less than the given value."""
+  language_lt: String
+
+  """All values less than or equal the given value."""
+  language_lte: String
+
+  """All values greater than the given value."""
+  language_gt: String
+
+  """All values greater than or equal the given value."""
+  language_gte: String
+
+  """All values containing the given string."""
+  language_contains: String
+
+  """All values not containing the given string."""
+  language_not_contains: String
+
+  """All values starting with the given string."""
+  language_starts_with: String
+
+  """All values not starting with the given string."""
+  language_not_starts_with: String
+
+  """All values ending with the given string."""
+  language_ends_with: String
+
+  """All values not ending with the given string."""
+  language_not_ends_with: String
+  logo: String
+
+  """All values that are not equal to given value."""
+  logo_not: String
+
+  """All values that are contained in given list."""
+  logo_in: [String!]
+
+  """All values that are not contained in given list."""
+  logo_not_in: [String!]
+
+  """All values less than the given value."""
+  logo_lt: String
+
+  """All values less than or equal the given value."""
+  logo_lte: String
+
+  """All values greater than the given value."""
+  logo_gt: String
+
+  """All values greater than or equal the given value."""
+  logo_gte: String
+
+  """All values containing the given string."""
+  logo_contains: String
+
+  """All values not containing the given string."""
+  logo_not_contains: String
+
+  """All values starting with the given string."""
+  logo_starts_with: String
+
+  """All values not starting with the given string."""
+  logo_not_starts_with: String
+
+  """All values ending with the given string."""
+  logo_ends_with: String
+
+  """All values not ending with the given string."""
+  logo_not_ends_with: String
+  mature: Boolean
+
+  """All values that are not equal to given value."""
+  mature_not: Boolean
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  twitchID: Int
+
+  """All values that are not equal to given value."""
+  twitchID_not: Int
+
+  """All values that are contained in given list."""
+  twitchID_in: [Int!]
+
+  """All values that are not contained in given list."""
+  twitchID_not_in: [Int!]
+
+  """All values less than the given value."""
+  twitchID_lt: Int
+
+  """All values less than or equal the given value."""
+  twitchID_lte: Int
+
+  """All values greater than the given value."""
+  twitchID_gt: Int
+
+  """All values greater than or equal the given value."""
+  twitchID_gte: Int
+  url: String
+
+  """All values that are not equal to given value."""
+  url_not: String
+
+  """All values that are contained in given list."""
+  url_in: [String!]
+
+  """All values that are not contained in given list."""
+  url_not_in: [String!]
+
+  """All values less than the given value."""
+  url_lt: String
+
+  """All values less than or equal the given value."""
+  url_lte: String
+
+  """All values greater than the given value."""
+  url_gt: String
+
+  """All values greater than or equal the given value."""
+  url_gte: String
+
+  """All values containing the given string."""
+  url_contains: String
+
+  """All values not containing the given string."""
+  url_not_contains: String
+
+  """All values starting with the given string."""
+  url_starts_with: String
+
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+
+  """All values ending with the given string."""
+  url_ends_with: String
+
+  """All values not ending with the given string."""
+  url_not_ends_with: String
+  streams_every: StreamFilter
+  streams_some: StreamFilter
+  streams_none: StreamFilter
+}
+
+enum ChannelOrderBy {
+  id_ASC
+  id_DESC
+  language_ASC
+  language_DESC
+  logo_ASC
+  logo_DESC
+  mature_ASC
+  mature_DESC
+  name_ASC
+  name_DESC
+  twitchID_ASC
+  twitchID_DESC
+  url_ASC
+  url_DESC
+}
+
+input ChannelstreamsStream {
+  preview: String
+  title: String
+  twitchID: Int
+  url: String
+  vodAvailabe: Boolean
+  vodLastChecked: Int
+  gamesIds: [ID!]
+  games: [StreamgamesGame!]
+}
+
+input CreateArchetype {
+  name: String
+  stockList: String
+  decksIds: [ID!]
+  decks: [ArchetypedecksDeck!]
+}
+
+input CreateArchetypeInput {
+  name: String
+  stockList: String
+  decksIds: [ID!]
+  decks: [ArchetypedecksDeck!]
+  clientMutationId: String!
+}
+
+type CreateArchetypePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  archetype: Archetype
+  edge: ArchetypeEdge
+}
+
+input CreateChannel {
+  language: String
+  logo: String
+  mature: Boolean
+  name: String
+  twitchID: Int
+  url: String
+  streamsIds: [ID!]
+  streams: [ChannelstreamsStream!]
+}
+
+input CreateChannelInput {
+  language: String
+  logo: String
+  mature: Boolean
+  name: String
+  twitchID: Int
+  url: String
+  streamsIds: [ID!]
+  streams: [ChannelstreamsStream!]
+  clientMutationId: String!
+}
+
+type CreateChannelPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  channel: Channel
+  edge: ChannelEdge
+}
+
+input CreateDeck {
+  deckcode: String
+  factions: [String!]
+  archetypeId: ID
+  archetype: DeckarchetypeArchetype
+  gamesIds: [ID!]
+  games: [DeckgamesGame!]
+}
+
+input CreateDeckInput {
+  deckcode: String
+  factions: [String!]
+  archetypeId: ID
+  archetype: DeckarchetypeArchetype
+  gamesIds: [ID!]
+  games: [DeckgamesGame!]
+  clientMutationId: String!
+}
+
+type CreateDeckPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  deck: Deck
+  edge: DeckEdge
+  archetype: Archetype
+}
+
+input CreateFile {
+  contentType: String!
+  name: String!
+  secret: String!
+  size: Int!
+  url: String!
+}
+
+input CreateFileInput {
+  contentType: String!
+  name: String!
+  secret: String!
+  size: Int!
+  url: String!
+  clientMutationId: String!
+}
+
+type CreateFilePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  file: File
+  edge: FileEdge
+}
+
+input CreateGame {
+  alliedCardsSeen: [String!]
+  endTime: Int
+  enemyCardsSeen: [String!]
+  opponentName: String
+  playerName: String
+  result: String
+  startTime: Int
+  deckId: ID
+  deck: GamedeckDeck
+  streamId: ID
+  stream: GamestreamStream
+}
+
+input CreateGameInput {
+  alliedCardsSeen: [String!]
+  endTime: Int
+  enemyCardsSeen: [String!]
+  opponentName: String
+  playerName: String
+  result: String
+  startTime: Int
+  deckId: ID
+  deck: GamedeckDeck
+  streamId: ID
+  stream: GamestreamStream
+  clientMutationId: String!
+}
+
+type CreateGamePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  game: Game
+  edge: GameEdge
+  deck: Deck
+  stream: Stream
+}
+
+input CreateStream {
+  preview: String
+  title: String
+  twitchID: Int
+  url: String
+  vodAvailabe: Boolean
+  vodLastChecked: Int
+  channelId: ID
+  channel: StreamchannelChannel
+  gamesIds: [ID!]
+  games: [StreamgamesGame!]
+}
+
+input CreateStreamInput {
+  preview: String
+  title: String
+  twitchID: Int
+  url: String
+  vodAvailabe: Boolean
+  vodLastChecked: Int
+  channelId: ID
+  channel: StreamchannelChannel
+  gamesIds: [ID!]
+  games: [StreamgamesGame!]
+  clientMutationId: String!
+}
+
+type CreateStreamPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  stream: Stream
+  edge: StreamEdge
+  channel: Channel
+}
+
+"""
+If authentication was successful the payload contains the user and a token. If unsuccessful this payload is null.
+"""
+type CreateUserPayload {
+  user: User
+  clientMutationId: String
+  viewer: Viewer!
+}
+
+scalar DateTime
+
+type Deck implements Node {
+  archetype(filter: ArchetypeFilter): Archetype
+  deckcode: String
+  factions: [String!]
+  games(filter: GameFilter, orderBy: GameOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): GameConnection
+  id: ID!
+}
+
+input DeckarchetypeArchetype {
+  name: String
+  stockList: String
+  decksIds: [ID!]
+  decks: [ArchetypedecksDeck!]
+}
+
+"""A connection to a list of items."""
+type DeckConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [DeckEdge]
+
+  """Count of filtered result set without considering pagination arguments"""
+  count: Int!
+}
+
+"""An edge in a connection."""
+type DeckEdge {
+  """The item at the end of the edge."""
+  node: Deck!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+input DeckFilter {
+  """Logical AND on all given filters."""
+  AND: [DeckFilter!]
+
+  """Logical OR on all given filters."""
+  OR: [DeckFilter!]
+  deckcode: String
+
+  """All values that are not equal to given value."""
+  deckcode_not: String
+
+  """All values that are contained in given list."""
+  deckcode_in: [String!]
+
+  """All values that are not contained in given list."""
+  deckcode_not_in: [String!]
+
+  """All values less than the given value."""
+  deckcode_lt: String
+
+  """All values less than or equal the given value."""
+  deckcode_lte: String
+
+  """All values greater than the given value."""
+  deckcode_gt: String
+
+  """All values greater than or equal the given value."""
+  deckcode_gte: String
+
+  """All values containing the given string."""
+  deckcode_contains: String
+
+  """All values not containing the given string."""
+  deckcode_not_contains: String
+
+  """All values starting with the given string."""
+  deckcode_starts_with: String
+
+  """All values not starting with the given string."""
+  deckcode_not_starts_with: String
+
+  """All values ending with the given string."""
+  deckcode_ends_with: String
+
+  """All values not ending with the given string."""
+  deckcode_not_ends_with: String
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  archetype: ArchetypeFilter
+  games_every: GameFilter
+  games_some: GameFilter
+  games_none: GameFilter
+}
+
+input DeckgamesGame {
+  alliedCardsSeen: [String!]
+  endTime: Int
+  enemyCardsSeen: [String!]
+  opponentName: String
+  playerName: String
+  result: String
+  startTime: Int
+  streamId: ID
+  stream: GamestreamStream
+}
+
+enum DeckOrderBy {
+  deckcode_ASC
+  deckcode_DESC
+  id_ASC
+  id_DESC
+}
+
+input DeleteArchetypeInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteArchetypePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  archetype: Archetype
+  edge: ArchetypeEdge
+  deletedId: ID
+}
+
+input DeleteChannelInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteChannelPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  channel: Channel
+  edge: ChannelEdge
+  deletedId: ID
+}
+
+input DeleteDeckInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteDeckPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  deck: Deck
+  edge: DeckEdge
+  archetype: Archetype
+  deletedId: ID
+}
+
+input DeleteFileInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteFilePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  file: File
+  edge: FileEdge
+  deletedId: ID
+}
+
+input DeleteGameInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteGamePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  game: Game
+  edge: GameEdge
+  deck: Deck
+  stream: Stream
+  deletedId: ID
+}
+
+input DeleteStreamInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteStreamPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  stream: Stream
+  edge: StreamEdge
+  channel: Channel
+  deletedId: ID
+}
+
+input DeleteUserInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type DeleteUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+  deletedId: ID
+}
+
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  secret: String!
+  size: Int!
+  updatedAt: DateTime!
+  url: String!
+}
+
+"""A connection to a list of items."""
+type FileConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [FileEdge]
+
+  """Count of filtered result set without considering pagination arguments"""
+  count: Int!
+}
+
+"""An edge in a connection."""
+type FileEdge {
+  """The item at the end of the edge."""
+  node: File!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+input FileFilter {
+  """Logical AND on all given filters."""
+  AND: [FileFilter!]
+
+  """Logical OR on all given filters."""
+  OR: [FileFilter!]
+  contentType: String
+
+  """All values that are not equal to given value."""
+  contentType_not: String
+
+  """All values that are contained in given list."""
+  contentType_in: [String!]
+
+  """All values that are not contained in given list."""
+  contentType_not_in: [String!]
+
+  """All values less than the given value."""
+  contentType_lt: String
+
+  """All values less than or equal the given value."""
+  contentType_lte: String
+
+  """All values greater than the given value."""
+  contentType_gt: String
+
+  """All values greater than or equal the given value."""
+  contentType_gte: String
+
+  """All values containing the given string."""
+  contentType_contains: String
+
+  """All values not containing the given string."""
+  contentType_not_contains: String
+
+  """All values starting with the given string."""
+  contentType_starts_with: String
+
+  """All values not starting with the given string."""
+  contentType_not_starts_with: String
+
+  """All values ending with the given string."""
+  contentType_ends_with: String
+
+  """All values not ending with the given string."""
+  contentType_not_ends_with: String
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  name: String
+
+  """All values that are not equal to given value."""
+  name_not: String
+
+  """All values that are contained in given list."""
+  name_in: [String!]
+
+  """All values that are not contained in given list."""
+  name_not_in: [String!]
+
+  """All values less than the given value."""
+  name_lt: String
+
+  """All values less than or equal the given value."""
+  name_lte: String
+
+  """All values greater than the given value."""
+  name_gt: String
+
+  """All values greater than or equal the given value."""
+  name_gte: String
+
+  """All values containing the given string."""
+  name_contains: String
+
+  """All values not containing the given string."""
+  name_not_contains: String
+
+  """All values starting with the given string."""
+  name_starts_with: String
+
+  """All values not starting with the given string."""
+  name_not_starts_with: String
+
+  """All values ending with the given string."""
+  name_ends_with: String
+
+  """All values not ending with the given string."""
+  name_not_ends_with: String
+  secret: String
+
+  """All values that are not equal to given value."""
+  secret_not: String
+
+  """All values that are contained in given list."""
+  secret_in: [String!]
+
+  """All values that are not contained in given list."""
+  secret_not_in: [String!]
+
+  """All values less than the given value."""
+  secret_lt: String
+
+  """All values less than or equal the given value."""
+  secret_lte: String
+
+  """All values greater than the given value."""
+  secret_gt: String
+
+  """All values greater than or equal the given value."""
+  secret_gte: String
+
+  """All values containing the given string."""
+  secret_contains: String
+
+  """All values not containing the given string."""
+  secret_not_contains: String
+
+  """All values starting with the given string."""
+  secret_starts_with: String
+
+  """All values not starting with the given string."""
+  secret_not_starts_with: String
+
+  """All values ending with the given string."""
+  secret_ends_with: String
+
+  """All values not ending with the given string."""
+  secret_not_ends_with: String
+  size: Int
+
+  """All values that are not equal to given value."""
+  size_not: Int
+
+  """All values that are contained in given list."""
+  size_in: [Int!]
+
+  """All values that are not contained in given list."""
+  size_not_in: [Int!]
+
+  """All values less than the given value."""
+  size_lt: Int
+
+  """All values less than or equal the given value."""
+  size_lte: Int
+
+  """All values greater than the given value."""
+  size_gt: Int
+
+  """All values greater than or equal the given value."""
+  size_gte: Int
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  url: String
+
+  """All values that are not equal to given value."""
+  url_not: String
+
+  """All values that are contained in given list."""
+  url_in: [String!]
+
+  """All values that are not contained in given list."""
+  url_not_in: [String!]
+
+  """All values less than the given value."""
+  url_lt: String
+
+  """All values less than or equal the given value."""
+  url_lte: String
+
+  """All values greater than the given value."""
+  url_gt: String
+
+  """All values greater than or equal the given value."""
+  url_gte: String
+
+  """All values containing the given string."""
+  url_contains: String
+
+  """All values not containing the given string."""
+  url_not_contains: String
+
+  """All values starting with the given string."""
+  url_starts_with: String
+
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+
+  """All values ending with the given string."""
+  url_ends_with: String
+
+  """All values not ending with the given string."""
+  url_not_ends_with: String
+}
+
+enum FileOrderBy {
+  contentType_ASC
+  contentType_DESC
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  secret_ASC
+  secret_DESC
+  size_ASC
+  size_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+  url_ASC
+  url_DESC
+}
+
+type Game implements Node {
+  alliedCardsSeen: [String!]
+  deck(filter: DeckFilter): Deck
+  endTime: Int
+  enemyCardsSeen: [String!]
+  id: ID!
+  opponentName: String
+  playerName: String
+  result: String
+  startTime: Int
+  stream(filter: StreamFilter): Stream
+}
+
+"""A connection to a list of items."""
+type GameConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [GameEdge]
+
+  """Count of filtered result set without considering pagination arguments"""
+  count: Int!
+}
+
+input GamedeckDeck {
+  deckcode: String
+  factions: [String!]
+  archetypeId: ID
+  archetype: DeckarchetypeArchetype
+  gamesIds: [ID!]
+  games: [DeckgamesGame!]
+}
+
+"""An edge in a connection."""
+type GameEdge {
+  """The item at the end of the edge."""
+  node: Game!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+input GameFilter {
+  """Logical AND on all given filters."""
+  AND: [GameFilter!]
+
+  """Logical OR on all given filters."""
+  OR: [GameFilter!]
+  endTime: Int
+
+  """All values that are not equal to given value."""
+  endTime_not: Int
+
+  """All values that are contained in given list."""
+  endTime_in: [Int!]
+
+  """All values that are not contained in given list."""
+  endTime_not_in: [Int!]
+
+  """All values less than the given value."""
+  endTime_lt: Int
+
+  """All values less than or equal the given value."""
+  endTime_lte: Int
+
+  """All values greater than the given value."""
+  endTime_gt: Int
+
+  """All values greater than or equal the given value."""
+  endTime_gte: Int
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  opponentName: String
+
+  """All values that are not equal to given value."""
+  opponentName_not: String
+
+  """All values that are contained in given list."""
+  opponentName_in: [String!]
+
+  """All values that are not contained in given list."""
+  opponentName_not_in: [String!]
+
+  """All values less than the given value."""
+  opponentName_lt: String
+
+  """All values less than or equal the given value."""
+  opponentName_lte: String
+
+  """All values greater than the given value."""
+  opponentName_gt: String
+
+  """All values greater than or equal the given value."""
+  opponentName_gte: String
+
+  """All values containing the given string."""
+  opponentName_contains: String
+
+  """All values not containing the given string."""
+  opponentName_not_contains: String
+
+  """All values starting with the given string."""
+  opponentName_starts_with: String
+
+  """All values not starting with the given string."""
+  opponentName_not_starts_with: String
+
+  """All values ending with the given string."""
+  opponentName_ends_with: String
+
+  """All values not ending with the given string."""
+  opponentName_not_ends_with: String
+  playerName: String
+
+  """All values that are not equal to given value."""
+  playerName_not: String
+
+  """All values that are contained in given list."""
+  playerName_in: [String!]
+
+  """All values that are not contained in given list."""
+  playerName_not_in: [String!]
+
+  """All values less than the given value."""
+  playerName_lt: String
+
+  """All values less than or equal the given value."""
+  playerName_lte: String
+
+  """All values greater than the given value."""
+  playerName_gt: String
+
+  """All values greater than or equal the given value."""
+  playerName_gte: String
+
+  """All values containing the given string."""
+  playerName_contains: String
+
+  """All values not containing the given string."""
+  playerName_not_contains: String
+
+  """All values starting with the given string."""
+  playerName_starts_with: String
+
+  """All values not starting with the given string."""
+  playerName_not_starts_with: String
+
+  """All values ending with the given string."""
+  playerName_ends_with: String
+
+  """All values not ending with the given string."""
+  playerName_not_ends_with: String
+  result: String
+
+  """All values that are not equal to given value."""
+  result_not: String
+
+  """All values that are contained in given list."""
+  result_in: [String!]
+
+  """All values that are not contained in given list."""
+  result_not_in: [String!]
+
+  """All values less than the given value."""
+  result_lt: String
+
+  """All values less than or equal the given value."""
+  result_lte: String
+
+  """All values greater than the given value."""
+  result_gt: String
+
+  """All values greater than or equal the given value."""
+  result_gte: String
+
+  """All values containing the given string."""
+  result_contains: String
+
+  """All values not containing the given string."""
+  result_not_contains: String
+
+  """All values starting with the given string."""
+  result_starts_with: String
+
+  """All values not starting with the given string."""
+  result_not_starts_with: String
+
+  """All values ending with the given string."""
+  result_ends_with: String
+
+  """All values not ending with the given string."""
+  result_not_ends_with: String
+  startTime: Int
+
+  """All values that are not equal to given value."""
+  startTime_not: Int
+
+  """All values that are contained in given list."""
+  startTime_in: [Int!]
+
+  """All values that are not contained in given list."""
+  startTime_not_in: [Int!]
+
+  """All values less than the given value."""
+  startTime_lt: Int
+
+  """All values less than or equal the given value."""
+  startTime_lte: Int
+
+  """All values greater than the given value."""
+  startTime_gt: Int
+
+  """All values greater than or equal the given value."""
+  startTime_gte: Int
+  deck: DeckFilter
+  stream: StreamFilter
+}
+
+enum GameOrderBy {
+  endTime_ASC
+  endTime_DESC
+  id_ASC
+  id_DESC
+  opponentName_ASC
+  opponentName_DESC
+  playerName_ASC
+  playerName_DESC
+  result_ASC
+  result_DESC
+  startTime_ASC
+  startTime_DESC
+}
+
+input GamestreamStream {
+  preview: String
+  title: String
+  twitchID: Int
+  url: String
+  vodAvailabe: Boolean
+  vodLastChecked: Int
+  channelId: ID
+  channel: StreamchannelChannel
+  gamesIds: [ID!]
+  games: [StreamgamesGame!]
+}
+
+"""HelloPayload"""
+type HelloPayload {
+  message: String!
+}
+
+input InvokeFunctionInput {
+  name: String!
+  input: String!
+  clientMutationId: String
+}
+
+type InvokeFunctionPayload {
+  result: String!
+  clientMutationId: String
+}
+
+type Mutation {
+  createArchetype(input: CreateArchetypeInput!): CreateArchetypePayload
+  createChannel(input: CreateChannelInput!): CreateChannelPayload
+  createDeck(input: CreateDeckInput!): CreateDeckPayload
+  createFile(input: CreateFileInput!): CreateFilePayload
+  createGame(input: CreateGameInput!): CreateGamePayload
+  createStream(input: CreateStreamInput!): CreateStreamPayload
+  updateArchetype(input: UpdateArchetypeInput!): UpdateArchetypePayload
+  updateChannel(input: UpdateChannelInput!): UpdateChannelPayload
+  updateDeck(input: UpdateDeckInput!): UpdateDeckPayload
+  updateFile(input: UpdateFileInput!): UpdateFilePayload
+  updateGame(input: UpdateGameInput!): UpdateGamePayload
+  updateStream(input: UpdateStreamInput!): UpdateStreamPayload
+  updateUser(input: UpdateUserInput!): UpdateUserPayload
+  updateOrCreateArchetype(input: UpdateOrCreateArchetypeInput!): UpdateOrCreateArchetypePayload
+  updateOrCreateChannel(input: UpdateOrCreateChannelInput!): UpdateOrCreateChannelPayload
+  updateOrCreateDeck(input: UpdateOrCreateDeckInput!): UpdateOrCreateDeckPayload
+  updateOrCreateFile(input: UpdateOrCreateFileInput!): UpdateOrCreateFilePayload
+  updateOrCreateGame(input: UpdateOrCreateGameInput!): UpdateOrCreateGamePayload
+  updateOrCreateStream(input: UpdateOrCreateStreamInput!): UpdateOrCreateStreamPayload
+  updateOrCreateUser(input: UpdateOrCreateUserInput!): UpdateOrCreateUserPayload
+  deleteArchetype(input: DeleteArchetypeInput!): DeleteArchetypePayload
+  deleteChannel(input: DeleteChannelInput!): DeleteChannelPayload
+  deleteDeck(input: DeleteDeckInput!): DeleteDeckPayload
+  deleteFile(input: DeleteFileInput!): DeleteFilePayload
+  deleteGame(input: DeleteGameInput!): DeleteGamePayload
+  deleteStream(input: DeleteStreamInput!): DeleteStreamPayload
+  deleteUser(input: DeleteUserInput!): DeleteUserPayload
+  addToArchetypeOnDeck(input: AddToArchetypeOnDeckDeckInput!): AddToArchetypeOnDeckPayload
+  addToChannelOnStream(input: AddToChannelOnStreamStreamInput!): AddToChannelOnStreamPayload
+  addToDeckOnGame(input: AddToDeckOnGameGameInput!): AddToDeckOnGamePayload
+  addToStreamOnGame(input: AddToStreamOnGameGameInput!): AddToStreamOnGamePayload
+  removeFromArchetypeOnDeck(input: RemoveFromArchetypeOnDeckDeckInput!): RemoveFromArchetypeOnDeckPayload
+  removeFromChannelOnStream(input: RemoveFromChannelOnStreamStreamInput!): RemoveFromChannelOnStreamPayload
+  removeFromDeckOnGame(input: RemoveFromDeckOnGameGameInput!): RemoveFromDeckOnGamePayload
+  removeFromStreamOnGame(input: RemoveFromStreamOnGameGameInput!): RemoveFromStreamOnGamePayload
+  createUser(input: SignupUserInput!): CreateUserPayload!
+  invokeFunction(input: InvokeFunctionInput!): InvokeFunctionPayload
+}
+
+"""An object with an ID"""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+type Query {
+  viewer: Viewer!
+
+  """Fetches an object given its ID"""
+  node(
+    """The ID of an object"""
+    id: ID!
+  ): Node
+}
+
+input RemoveFromArchetypeOnDeckDeckInput {
+  archetypeArchetypeId: ID!
+  decksDeckId: ID!
+  clientMutationId: String!
+}
+
+type RemoveFromArchetypeOnDeckPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  decksDeck: Deck
+  archetypeArchetype: Archetype
+  decksDeckEdge: DeckEdge
+  archetypeArchetypeEdge: ArchetypeEdge
+}
+
+type RemoveFromChannelOnStreamPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  streamsStream: Stream
+  channelChannel: Channel
+  streamsStreamEdge: StreamEdge
+  channelChannelEdge: ChannelEdge
+}
+
+input RemoveFromChannelOnStreamStreamInput {
+  channelChannelId: ID!
+  streamsStreamId: ID!
+  clientMutationId: String!
+}
+
+input RemoveFromDeckOnGameGameInput {
+  deckDeckId: ID!
+  gamesGameId: ID!
+  clientMutationId: String!
+}
+
+type RemoveFromDeckOnGamePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  gamesGame: Game
+  deckDeck: Deck
+  gamesGameEdge: GameEdge
+  deckDeckEdge: DeckEdge
+}
+
+input RemoveFromStreamOnGameGameInput {
+  streamStreamId: ID!
+  gamesGameId: ID!
+  clientMutationId: String!
+}
+
+type RemoveFromStreamOnGamePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  gamesGame: Game
+  streamStream: Stream
+  gamesGameEdge: GameEdge
+  streamStreamEdge: StreamEdge
+}
+
+input SignupUserInput {
+  clientMutationId: String!
+}
+
+type Stream implements Node {
+  channel(filter: ChannelFilter): Channel
+  games(filter: GameFilter, orderBy: GameOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): GameConnection
+  id: ID!
+  preview: String
+  title: String
+  twitchID: Int
+  url: String
+  vodAvailabe: Boolean
+  vodLastChecked: Int
+}
+
+input StreamchannelChannel {
+  language: String
+  logo: String
+  mature: Boolean
+  name: String
+  twitchID: Int
+  url: String
+  streamsIds: [ID!]
+  streams: [ChannelstreamsStream!]
+}
+
+"""A connection to a list of items."""
+type StreamConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [StreamEdge]
+
+  """Count of filtered result set without considering pagination arguments"""
+  count: Int!
+}
+
+"""An edge in a connection."""
+type StreamEdge {
+  """The item at the end of the edge."""
+  node: Stream!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+input StreamFilter {
+  """Logical AND on all given filters."""
+  AND: [StreamFilter!]
+
+  """Logical OR on all given filters."""
+  OR: [StreamFilter!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  preview: String
+
+  """All values that are not equal to given value."""
+  preview_not: String
+
+  """All values that are contained in given list."""
+  preview_in: [String!]
+
+  """All values that are not contained in given list."""
+  preview_not_in: [String!]
+
+  """All values less than the given value."""
+  preview_lt: String
+
+  """All values less than or equal the given value."""
+  preview_lte: String
+
+  """All values greater than the given value."""
+  preview_gt: String
+
+  """All values greater than or equal the given value."""
+  preview_gte: String
+
+  """All values containing the given string."""
+  preview_contains: String
+
+  """All values not containing the given string."""
+  preview_not_contains: String
+
+  """All values starting with the given string."""
+  preview_starts_with: String
+
+  """All values not starting with the given string."""
+  preview_not_starts_with: String
+
+  """All values ending with the given string."""
+  preview_ends_with: String
+
+  """All values not ending with the given string."""
+  preview_not_ends_with: String
+  title: String
+
+  """All values that are not equal to given value."""
+  title_not: String
+
+  """All values that are contained in given list."""
+  title_in: [String!]
+
+  """All values that are not contained in given list."""
+  title_not_in: [String!]
+
+  """All values less than the given value."""
+  title_lt: String
+
+  """All values less than or equal the given value."""
+  title_lte: String
+
+  """All values greater than the given value."""
+  title_gt: String
+
+  """All values greater than or equal the given value."""
+  title_gte: String
+
+  """All values containing the given string."""
+  title_contains: String
+
+  """All values not containing the given string."""
+  title_not_contains: String
+
+  """All values starting with the given string."""
+  title_starts_with: String
+
+  """All values not starting with the given string."""
+  title_not_starts_with: String
+
+  """All values ending with the given string."""
+  title_ends_with: String
+
+  """All values not ending with the given string."""
+  title_not_ends_with: String
+  twitchID: Int
+
+  """All values that are not equal to given value."""
+  twitchID_not: Int
+
+  """All values that are contained in given list."""
+  twitchID_in: [Int!]
+
+  """All values that are not contained in given list."""
+  twitchID_not_in: [Int!]
+
+  """All values less than the given value."""
+  twitchID_lt: Int
+
+  """All values less than or equal the given value."""
+  twitchID_lte: Int
+
+  """All values greater than the given value."""
+  twitchID_gt: Int
+
+  """All values greater than or equal the given value."""
+  twitchID_gte: Int
+  url: String
+
+  """All values that are not equal to given value."""
+  url_not: String
+
+  """All values that are contained in given list."""
+  url_in: [String!]
+
+  """All values that are not contained in given list."""
+  url_not_in: [String!]
+
+  """All values less than the given value."""
+  url_lt: String
+
+  """All values less than or equal the given value."""
+  url_lte: String
+
+  """All values greater than the given value."""
+  url_gt: String
+
+  """All values greater than or equal the given value."""
+  url_gte: String
+
+  """All values containing the given string."""
+  url_contains: String
+
+  """All values not containing the given string."""
+  url_not_contains: String
+
+  """All values starting with the given string."""
+  url_starts_with: String
+
+  """All values not starting with the given string."""
+  url_not_starts_with: String
+
+  """All values ending with the given string."""
+  url_ends_with: String
+
+  """All values not ending with the given string."""
+  url_not_ends_with: String
+  vodAvailabe: Boolean
+
+  """All values that are not equal to given value."""
+  vodAvailabe_not: Boolean
+  vodLastChecked: Int
+
+  """All values that are not equal to given value."""
+  vodLastChecked_not: Int
+
+  """All values that are contained in given list."""
+  vodLastChecked_in: [Int!]
+
+  """All values that are not contained in given list."""
+  vodLastChecked_not_in: [Int!]
+
+  """All values less than the given value."""
+  vodLastChecked_lt: Int
+
+  """All values less than or equal the given value."""
+  vodLastChecked_lte: Int
+
+  """All values greater than the given value."""
+  vodLastChecked_gt: Int
+
+  """All values greater than or equal the given value."""
+  vodLastChecked_gte: Int
+  channel: ChannelFilter
+  games_every: GameFilter
+  games_some: GameFilter
+  games_none: GameFilter
+}
+
+input StreamgamesGame {
+  alliedCardsSeen: [String!]
+  endTime: Int
+  enemyCardsSeen: [String!]
+  opponentName: String
+  playerName: String
+  result: String
+  startTime: Int
+  deckId: ID
+  deck: GamedeckDeck
+}
+
+enum StreamOrderBy {
+  id_ASC
+  id_DESC
+  preview_ASC
+  preview_DESC
+  title_ASC
+  title_DESC
+  twitchID_ASC
+  twitchID_DESC
+  url_ASC
+  url_DESC
+  vodAvailabe_ASC
+  vodAvailabe_DESC
+  vodLastChecked_ASC
+  vodLastChecked_DESC
+}
+
+input UpdateArchetype {
+  id: ID!
+  name: String
+  stockList: String
+  decksIds: [ID!]
+  decks: [ArchetypedecksDeck!]
+}
+
+input UpdateArchetypeInput {
+  id: ID!
+  name: String
+  stockList: String
+  decksIds: [ID!]
+  decks: [ArchetypedecksDeck!]
+  clientMutationId: String!
+}
+
+type UpdateArchetypePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  archetype: Archetype
+  edge: ArchetypeEdge
+}
+
+input UpdateChannel {
+  id: ID!
+  language: String
+  logo: String
+  mature: Boolean
+  name: String
+  twitchID: Int
+  url: String
+  streamsIds: [ID!]
+  streams: [ChannelstreamsStream!]
+}
+
+input UpdateChannelInput {
+  id: ID!
+  language: String
+  logo: String
+  mature: Boolean
+  name: String
+  twitchID: Int
+  url: String
+  streamsIds: [ID!]
+  streams: [ChannelstreamsStream!]
+  clientMutationId: String!
+}
+
+type UpdateChannelPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  channel: Channel
+  edge: ChannelEdge
+}
+
+input UpdateDeck {
+  deckcode: String
+  factions: [String!]
+  id: ID!
+  archetypeId: ID
+  archetype: DeckarchetypeArchetype
+  gamesIds: [ID!]
+  games: [DeckgamesGame!]
+}
+
+input UpdateDeckInput {
+  deckcode: String
+  factions: [String!]
+  id: ID!
+  archetypeId: ID
+  archetype: DeckarchetypeArchetype
+  gamesIds: [ID!]
+  games: [DeckgamesGame!]
+  clientMutationId: String!
+}
+
+type UpdateDeckPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  deck: Deck
+  edge: DeckEdge
+  archetype: Archetype
+}
+
+input UpdateFile {
+  contentType: String
+  id: ID!
+  name: String
+  secret: String
+  size: Int
+  url: String
+}
+
+input UpdateFileInput {
+  contentType: String
+  id: ID!
+  name: String
+  secret: String
+  size: Int
+  url: String
+  clientMutationId: String!
+}
+
+type UpdateFilePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  file: File
+  edge: FileEdge
+}
+
+input UpdateGame {
+  alliedCardsSeen: [String!]
+  endTime: Int
+  enemyCardsSeen: [String!]
+  id: ID!
+  opponentName: String
+  playerName: String
+  result: String
+  startTime: Int
+  deckId: ID
+  deck: GamedeckDeck
+  streamId: ID
+  stream: GamestreamStream
+}
+
+input UpdateGameInput {
+  alliedCardsSeen: [String!]
+  endTime: Int
+  enemyCardsSeen: [String!]
+  id: ID!
+  opponentName: String
+  playerName: String
+  result: String
+  startTime: Int
+  deckId: ID
+  deck: GamedeckDeck
+  streamId: ID
+  stream: GamestreamStream
+  clientMutationId: String!
+}
+
+type UpdateGamePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  game: Game
+  edge: GameEdge
+  deck: Deck
+  stream: Stream
+}
+
+input UpdateOrCreateArchetypeInput {
+  update: UpdateArchetype!
+  create: CreateArchetype!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateArchetypePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  archetype: Archetype
+  edge: ArchetypeEdge
+}
+
+input UpdateOrCreateChannelInput {
+  update: UpdateChannel!
+  create: CreateChannel!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateChannelPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  channel: Channel
+  edge: ChannelEdge
+}
+
+input UpdateOrCreateDeckInput {
+  update: UpdateDeck!
+  create: CreateDeck!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateDeckPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  deck: Deck
+  edge: DeckEdge
+  archetype: Archetype
+}
+
+input UpdateOrCreateFileInput {
+  update: UpdateFile!
+  create: CreateFile!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateFilePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  file: File
+  edge: FileEdge
+}
+
+input UpdateOrCreateGameInput {
+  update: UpdateGame!
+  create: CreateGame!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateGamePayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  game: Game
+  edge: GameEdge
+  deck: Deck
+  stream: Stream
+}
+
+input UpdateOrCreateStreamInput {
+  update: UpdateStream!
+  create: CreateStream!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateStreamPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  stream: Stream
+  edge: StreamEdge
+  channel: Channel
+}
+
+input UpdateOrCreateUserInput {
+  update: UpdateUser!
+  clientMutationId: String!
+}
+
+type UpdateOrCreateUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+}
+
+input UpdateStream {
+  id: ID!
+  preview: String
+  title: String
+  twitchID: Int
+  url: String
+  vodAvailabe: Boolean
+  vodLastChecked: Int
+  channelId: ID
+  channel: StreamchannelChannel
+  gamesIds: [ID!]
+  games: [StreamgamesGame!]
+}
+
+input UpdateStreamInput {
+  id: ID!
+  preview: String
+  title: String
+  twitchID: Int
+  url: String
+  vodAvailabe: Boolean
+  vodLastChecked: Int
+  channelId: ID
+  channel: StreamchannelChannel
+  gamesIds: [ID!]
+  games: [StreamgamesGame!]
+  clientMutationId: String!
+}
+
+type UpdateStreamPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  stream: Stream
+  edge: StreamEdge
+  channel: Channel
+}
+
+input UpdateUser {
+  id: ID!
+}
+
+input UpdateUserInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type UpdateUserPayload {
+  viewer: Viewer!
+  clientMutationId: String!
+  user: User
+  edge: UserEdge
+}
+
+type User implements Node {
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+}
+
+"""A connection to a list of items."""
+type UserConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [UserEdge]
+
+  """Count of filtered result set without considering pagination arguments"""
+  count: Int!
+}
+
+"""An edge in a connection."""
+type UserEdge {
+  """The item at the end of the edge."""
+  node: User!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+input UserFilter {
+  """Logical AND on all given filters."""
+  AND: [UserFilter!]
+
+  """Logical OR on all given filters."""
+  OR: [UserFilter!]
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+}
+
+enum UserOrderBy {
+  createdAt_ASC
+  createdAt_DESC
+  id_ASC
+  id_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+"""This is the famous Relay viewer object"""
+type Viewer {
+  allArchetypes(filter: ArchetypeFilter, orderBy: ArchetypeOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): ArchetypeConnection!
+  allChannels(filter: ChannelFilter, orderBy: ChannelOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): ChannelConnection!
+  allDecks(filter: DeckFilter, orderBy: DeckOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): DeckConnection!
+  allFiles(filter: FileFilter, orderBy: FileOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): FileConnection!
+  allGames(filter: GameFilter, orderBy: GameOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): GameConnection!
+  allStreams(filter: StreamFilter, orderBy: StreamOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): StreamConnection!
+  allUsers(filter: UserFilter, orderBy: UserOrderBy, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  user: User
+  Archetype(id: ID): Archetype
+  Channel(id: ID): Channel
+  Deck(id: ID): Deck
+  File(id: ID, secret: String, url: String): File
+  Game(id: ID): Game
+  Stream(id: ID): Stream
+  User(id: ID): User
+
+  """hello"""
+  hello(name: String): HelloPayload
+  id: ID!
+}
+
