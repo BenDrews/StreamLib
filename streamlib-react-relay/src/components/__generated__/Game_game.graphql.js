@@ -1,0 +1,102 @@
+/**
+ * @flow
+ */
+
+/* eslint-disable */
+
+'use strict';
+
+/*::
+import type { ReaderFragment } from 'relay-runtime';
+import type { FragmentReference } from "relay-runtime";
+declare export opaque type Game_game$ref: FragmentReference;
+declare export opaque type Game_game$fragmentType: Game_game$ref;
+export type Game_game = {|
+  +id: string,
+  +startTime: ?number,
+  +endTime: ?number,
+  +deck: ?{|
+    +deckcode: ?string
+  |},
+  +stream: ?{|
+    +url: ?string
+  |},
+  +$refType: Game_game$ref,
+|};
+export type Game_game$data = Game_game;
+export type Game_game$key = {
+  +$data?: Game_game$data,
+  +$fragmentRefs: Game_game$ref,
+};
+*/
+
+
+const node/*: ReaderFragment*/ = {
+  "kind": "Fragment",
+  "name": "Game_game",
+  "type": "Game",
+  "metadata": null,
+  "argumentDefinitions": [],
+  "selections": [
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "id",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "startTime",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "endTime",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "deck",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Deck",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "deckcode",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "stream",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Stream",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "url",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    }
+  ]
+};
+// prettier-ignore
+(node/*: any*/).hash = 'c3628dd61edefc1a92cf26df78309a2a';
+module.exports = node;

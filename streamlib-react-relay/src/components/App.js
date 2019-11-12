@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import GameList from './GameList'
+import GameListPage from './GameListPage'
 
 class App extends Component {
   render() {
     return (
-      <GameList />
+      <GameListPage />
     )
   }
 }

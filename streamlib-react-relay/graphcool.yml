@@ -21,9 +21,9 @@ types: ./types.graphql
 functions:
   hello:
     handler:
-      code: src/hello.js
+      code: src/resolvers/recordGame.js
     type: resolver
-    schema: src/hello.graphql
+    schema: src/resolvers/recordGame.graphql
 
 
 # Model/Relation permissions are used to limit the API access
@@ -40,4 +40,3 @@ permissions:
 # https://www.graph.cool/docs/reference/auth/authentication/authentication-tokens-eip7ahqu5o
 # rootTokens:
 #   - mytoken
-

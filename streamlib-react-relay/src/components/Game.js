@@ -9,21 +9,25 @@ class Game extends Component {
   render() {
     return (
       <div>
-        <div>{this.props.game.start_time}-{this.props.game.end_time}</div>
-        <div>{this.props.game.stream.url}</div>
+        <div>Timestamp: {this.props.game.startTime}-{this.props.game.endTime}</div>
+        <div>Stream URL: {this.props.game.stream.url}</div>
+        <div>Deckcode: {this.props.game.deck.deckcode}</div>
       </div>
     )
   }
 
 }
 
-export default createFragmentContainer(Game, graphql`
+export default createFragmentContainer(Game, {game: graphql`
   fragment Game_game on Game {
     id
-    start_time
-    end_time
+    startTime
+    endTime
+    deck {
+      deckcode
+    }
     stream {
       url
     }
   }
-`)
+`})
