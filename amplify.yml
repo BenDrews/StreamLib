@@ -5,6 +5,7 @@ frontend:
       commands:
         - cd streamlib-react-relay
         - npm install
+        - npm ci
     build:
       commands:
         - cd streamlib-react-relay
