@@ -4,7 +4,7 @@ frontend:
     preBuild:
       commands:
         - cd streamlib-react-relay
-        - npm ci
+        - npm install
     build:
       commands:
         - cd streamlib-react-relay
