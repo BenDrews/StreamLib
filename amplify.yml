@@ -7,7 +7,6 @@ frontend:
         - npm install
     build:
       commands:
-        - cd streamlib-react-relay
         - npm run build
   artifacts:
     # IMPORTANT - Please verify your build output directory
