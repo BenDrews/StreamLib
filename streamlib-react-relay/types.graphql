@@ -35,8 +35,19 @@ type Deck @model {
   id: ID! @isUnique
   factions: [String!]
   deckcode: String
+  cards: [Card!]! @relation(name: "DeckOnCard")
   archetype: Archetype @relation(name: "ArchetypeOnDeck")
   games: [Game!]! @relation(name: "DeckOnGame")
+}
+
+type Card @model {
+  id: ID! @isUnique
+  faction: String
+  cardCode: String
+  count: Int
+  setID: Int
+  cardID: Int
+  deck: Deck @relation(name: "DeckOnCard")
 }
 
 type Archetype @model {
