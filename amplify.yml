@@ -5,13 +5,10 @@ frontend:
       commands:
         - cd streamlib-react-relay
         - npm install
-        - npm ci
     build:
       commands:
         - cd streamlib-react-relay
-        - yarn build
-        - npm run relay
-        - yarn start
+        - npm run build
   artifacts:
     # IMPORTANT - Please verify your build output directory
     baseDirectory: /streamlib-react-relay/src
