@@ -61,7 +61,8 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    padding: "16px"
+    padding: "16px",
+    cursor: "pointer"
   },
   streamPreviewImg: {
     width: "150px",
