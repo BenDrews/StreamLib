@@ -1,7 +1,8 @@
-import { CLIENT_ID, CLIENT_SECRET } from 'TwitchConstants'
+import { CLIENT_ID, CLIENT_SECRET } from './TwitchConstants.js'
 var https = require('https');
+var querystring = require('querystring');
 
-function twitchApiRequest(twitch_path, data) {
+function twitchApiRequest(twitch_path, data, callback) {
     // POST options
     var options = {
         host: 'id.twitch.tv',
@@ -16,18 +17,21 @@ function twitchApiRequest(twitch_path, data) {
 
     // Create request
     var req = https.request(options, function(res) {
+        console.log("get resp");
         res.setEncoding('utf8');
-        res.on('data', function (chunk) {
-            console.log('Response: ' + chunk);
-        });
+        res.on('data', callback);
     });
 
+    console.log("send req");
     // Send request
     req.write(data);
+    req.on('error', (e) => {
+        console.log(e);
+    });
     req.end();
 }
 
-function getAuthToken() {
+export function getAuthToken(callback) {
     // Build Twitch API query string
     var post_data = querystring.stringify({
         'client_id' : CLIENT_ID,
@@ -35,5 +39,5 @@ function getAuthToken() {
         'grant_type': 'client_credentials',
         // 'scope' : ''
     });
-    twitchApiRequest('/oauth2/token', post_data);
+    twitchApiRequest('/oauth2/token', post_data, callback);
 }
