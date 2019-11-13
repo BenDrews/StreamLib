@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash d3d6030fc1cea608f8e26f72461e1b80
+ * @relayHash fb393c81b14ec850ada8a7a0ba611de6
  */
 
 /* eslint-disable */
@@ -52,12 +52,16 @@ fragment Game_game on Game {
   id
   startTime
   endTime
-  deck {
-    deckcode
+  playerName
+  opponentName
+  result
+  stream {
+    preview
+    url
     id
   }
-  stream {
-    url
+  deck {
+    deckcode
     id
   }
 }
@@ -167,23 +171,25 @@ return {
                         "storageKey": null
                       },
                       {
-                        "kind": "LinkedField",
+                        "kind": "ScalarField",
                         "alias": null,
-                        "name": "deck",
-                        "storageKey": null,
+                        "name": "playerName",
                         "args": null,
-                        "concreteType": "Deck",
-                        "plural": false,
-                        "selections": [
-                          {
-                            "kind": "ScalarField",
-                            "alias": null,
-                            "name": "deckcode",
-                            "args": null,
-                            "storageKey": null
-                          },
-                          (v1/*: any*/)
-                        ]
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "opponentName",
+                        "args": null,
+                        "storageKey": null
+                      },
+                      {
+                        "kind": "ScalarField",
+                        "alias": null,
+                        "name": "result",
+                        "args": null,
+                        "storageKey": null
                       },
                       {
                         "kind": "LinkedField",
@@ -197,7 +203,33 @@ return {
                           {
                             "kind": "ScalarField",
                             "alias": null,
+                            "name": "preview",
+                            "args": null,
+                            "storageKey": null
+                          },
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
                             "name": "url",
+                            "args": null,
+                            "storageKey": null
+                          },
+                          (v1/*: any*/)
+                        ]
+                      },
+                      {
+                        "kind": "LinkedField",
+                        "alias": null,
+                        "name": "deck",
+                        "storageKey": null,
+                        "args": null,
+                        "concreteType": "Deck",
+                        "plural": false,
+                        "selections": [
+                          {
+                            "kind": "ScalarField",
+                            "alias": null,
+                            "name": "deckcode",
                             "args": null,
                             "storageKey": null
                           },
@@ -267,7 +299,7 @@ return {
     "operationKind": "query",
     "name": "GameListPageQuery",
     "id": null,
-    "text": "query GameListPageQuery {\n  viewer {\n    ...GameList_viewer\n    id\n  }\n}\n\nfragment GameList_viewer on Viewer {\n  allGames(last: 100, orderBy: startTime_DESC) {\n    edges {\n      node {\n        ...Game_game\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Game_game on Game {\n  id\n  startTime\n  endTime\n  deck {\n    deckcode\n    id\n  }\n  stream {\n    url\n    id\n  }\n}\n",
+    "text": "query GameListPageQuery {\n  viewer {\n    ...GameList_viewer\n    id\n  }\n}\n\nfragment GameList_viewer on Viewer {\n  allGames(last: 100, orderBy: startTime_DESC) {\n    edges {\n      node {\n        ...Game_game\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Game_game on Game {\n  id\n  startTime\n  endTime\n  playerName\n  opponentName\n  result\n  stream {\n    preview\n    url\n    id\n  }\n  deck {\n    deckcode\n    id\n  }\n}\n",
     "metadata": {}
   }
 };

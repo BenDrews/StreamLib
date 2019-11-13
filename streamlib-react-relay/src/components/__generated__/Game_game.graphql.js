@@ -15,11 +15,15 @@ export type Game_game = {|
   +id: string,
   +startTime: ?number,
   +endTime: ?number,
+  +playerName: ?string,
+  +opponentName: ?string,
+  +result: ?string,
+  +stream: ?{|
+    +preview: ?string,
+    +url: ?string,
+  |},
   +deck: ?{|
     +deckcode: ?string
-  |},
-  +stream: ?{|
-    +url: ?string
   |},
   +$refType: Game_game$ref,
 |};
@@ -60,6 +64,52 @@ const node/*: ReaderFragment*/ = {
       "storageKey": null
     },
     {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "playerName",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "opponentName",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "ScalarField",
+      "alias": null,
+      "name": "result",
+      "args": null,
+      "storageKey": null
+    },
+    {
+      "kind": "LinkedField",
+      "alias": null,
+      "name": "stream",
+      "storageKey": null,
+      "args": null,
+      "concreteType": "Stream",
+      "plural": false,
+      "selections": [
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "preview",
+          "args": null,
+          "storageKey": null
+        },
+        {
+          "kind": "ScalarField",
+          "alias": null,
+          "name": "url",
+          "args": null,
+          "storageKey": null
+        }
+      ]
+    },
+    {
       "kind": "LinkedField",
       "alias": null,
       "name": "deck",
@@ -76,27 +126,9 @@ const node/*: ReaderFragment*/ = {
           "storageKey": null
         }
       ]
-    },
-    {
-      "kind": "LinkedField",
-      "alias": null,
-      "name": "stream",
-      "storageKey": null,
-      "args": null,
-      "concreteType": "Stream",
-      "plural": false,
-      "selections": [
-        {
-          "kind": "ScalarField",
-          "alias": null,
-          "name": "url",
-          "args": null,
-          "storageKey": null
-        }
-      ]
     }
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = 'c3628dd61edefc1a92cf26df78309a2a';
+(node/*: any*/).hash = '1fff2964884b7f230230963b0199413f';
 module.exports = node;

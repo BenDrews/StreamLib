@@ -9,24 +9,8 @@ class GameList extends Component {
 
   render() {
 
-    const gamesToRender = [{
-      id: '1',
-      start_time: 0,
-      end_time: 180,
-      stream: {
-        url: 'twitch.tv/xaresim',
-      }
-    }, {
-      id: '2',
-      start_time: 200,
-      end_time: 260,
-      stream: {
-        url: 'twitch.tv/xaresim',
-      }
-    }]
-
     return (
-      <div>
+      <div style={styles.main}>
       {this.props.viewer.allGames.edges.map(({node}) =>
        <Game key={node.__id} game={node} />
    )}
@@ -34,6 +18,13 @@ class GameList extends Component {
     )
   }
 
+}
+
+const styles = {
+  main: {
+    display: "flex",
+    flexDirection: "column"
+  }
 }
 
 export default createFragmentContainer(GameList, {viewer: graphql`
