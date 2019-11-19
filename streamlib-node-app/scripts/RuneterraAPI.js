@@ -5,61 +5,71 @@ var request = require('request');
 class RuneterraAPI {
   constructor() {
     this.status = 'inactive';
-    this.deckCode = null;
+    this.deckcode = null;
     this.cards = null;
     this.completedGames = [];
   }
   // We will look at static and subclassed methods shortly
 
   requestAPI(endpoint) {
-
-    let req = request.get(`http://localhost:${port}/${endpoint}`)
-      .on('response', function(response) {
-        console.log(response.statusCode) // 200
-        console.log(response.headers['content-type']) // 'image/png'
-        return response.JSON;
-      })
-      .on('error', function(error) {
-        console.log(error)
+    return new Promise(function(resolve, reject) {
+      request.get(`http://localhost:${port}/${endpoint}`, null, function(error, response, body) {
+        console.log('error:', error);
+        console.log('statusCode:', response && response.statusCode);
+        if (error !== null) {
+          reject(error);
+        } else {
+          console.log(body);
+          resolve(JSON.parse(body));
+        }
       });
-    console.log(req);
-    return req;
+    })
   }
 
-  async updateStatus() {
-    let data = await this.requestAPI('static-decklist');
-    if (data.DeckCode === null) {
-      let status = 'inactive'
-      console.log(status)
-      let deckcode = null;
-    } else {
-      let status = 'active'
-      console.log(data)
-      let deckcode = data.DeckCode
-      let cards = data.CardsInDeck
-    }
-    if (this.status !== status) {
-      if (status === 'active') {
-        this.initGame()
+  updateStatus() {
+    this.requestAPI('static-decklist').then(data => {
+      if (data.DeckCode === null) {
+        var status = 'inactive'
+        console.log(status)
+        var deckcode = null;
+        var cards = null;
       } else {
-        this.completeGame()
+        var status = 'active'
+        console.log(data)
+        var deckcode = data.DeckCode
+        var cards = data.CardsInDeck
       }
-    }
+      if (this.status !== status) {
+        this.status = status
+        this.deckcode = deckcode
+        this.cards = cards
+        console.log("WE HERE")
+        if (status === 'inactive') {
+          this.completeGame();
+        }
+      }
+      if (status === 'active') {
+        this.updateGame();
+      }
+    });
   }
 
-  initGame() {
-    let data = requestAPI('card-positions');
-    let playerName = data.PlayerName;
-    let opponentName = data.OpponentName;
-    let playerCards = data.Rectangles.filter(card => card.localPlayer).map(card => card.cardCode);
-    let enemyCards = data.Rectangles.filter(card => !card.localPlayer).map(card => card.cardCode);
+  updateGame() {
+    this.requestAPI('positional-rectangles').then(data => {
+      let playerName = data.PlayerName;
+      let opponentName = data.OpponentName;
+      console.log("DATA");
+      console.log(data);
+      let playerCards = data.Rectangles.filter(card => card.localPlayer).map(card => card.cardCode);
+      let enemyCards = data.Rectangles.filter(card => !card.localPlayer).map(card => card.cardCode);
 
-    this.currentGame = {
-      'playerName': playerName,
-      'opponentName': opponentName,
-      'playerCards': playerCards,
-      'enemyCards': enemyCards,
-    }
+      this.currentGame = {
+        'playerName': playerName,
+        'opponentName': opponentName,
+        'playerCards': playerCards,
+        'enemyCards': enemyCards,
+      }
+    });
   }
 
   completeGame() {
@@ -68,8 +78,7 @@ class RuneterraAPI {
   }
 
   updateCards() {
-    data = requestAPI('card-positions');
-
+    data = this.requestAPI('card-positions');
   }
 }
 

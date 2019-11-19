@@ -1,3 +1,4 @@
+var api = require('./twitch');
 var electron = require('electron');
 var authTokenStorage = 'StreamLib/auth-token';
 
