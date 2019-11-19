@@ -8,11 +8,11 @@ function makeHeaders(token) {
     };
 }
 
-export function getInfo(token) {
+function getInfo(token) {
     var channelID;
     var options = {
         url: 'https://api.twitch.tv/kraken/channel',
-        headers: makeHeaders(token);
+        headers: makeHeaders(token)
     }
     request.get(options, function (error, response, body) {
         var bodyObject = JSON.parse(body);
