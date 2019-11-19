@@ -12,7 +12,9 @@ class Game extends Component {
   }
 
   onClickStream() {
+    if (this.props.game.stream !== null) {
     window.location = `${this.props.game.stream.url}?t=${this.props.game.startTime}s`
+  }
   }
 
   render() {
@@ -34,7 +36,7 @@ class Game extends Component {
         </div>
         <div style={styles.infoPanel}>
 
-          <div>Stream URL: {this.props.game.stream.url}</div>
+          <div>Stream URL: {this.props.game.stream ? this.props.game.stream.url : null}</div>
           <div>Deckcode: {this.props.game.deck.deckcode}</div>
         </div>
       </div>
