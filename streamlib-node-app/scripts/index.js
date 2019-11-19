@@ -1,6 +1,7 @@
-var api = require('./twitch');
 var electron = require('electron');
 var authTokenStorage = 'StreamLib/auth-token';
+
+var authToken;
 
 function main() {
     var riotAPI = new RuneterraAPI();
@@ -12,13 +13,29 @@ function main() {
         console.log('Access token: ' + accessToken);
         window.localStorage.setItem(authTokenStorage, accessToken);
     }
-    var authToken = window.localStorage.getItem(authTokenStorage);
+    authToken = window.localStorage.getItem(authTokenStorage);
     if (authToken) {
         document.getElementById('auth').innerHTML = 'Authenticated.';
     }
     else {
         document.getElementById('auth').innerHTML = 'Not authenticated.';
     }
+}
+
+function getAuthToken() {
+    return authToken;
+}
+
+function printChannelInfo() {
+    getChannelInfo(getAuthToken(), function(info) {
+        console.dir(info);
+    });
+}
+
+function printVideoInfo() {
+    getVideoInfo(null, function(info) {
+        console.dir(info);
+    });
 }
 
 main();
