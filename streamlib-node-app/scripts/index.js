@@ -33,7 +33,7 @@ function printChannelInfo() {
 }
 
 function printVideoInfo() {
-    getVideoInfo(null, function(info) {
+    getVideoInfo(document.getElementById("channelId").value, false, function(info) {
         console.dir(info);
     });
 }
