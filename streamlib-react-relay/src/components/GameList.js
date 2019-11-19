@@ -29,7 +29,7 @@ const styles = {
 
 export default createFragmentContainer(GameList, {viewer: graphql`
   fragment GameList_viewer on Viewer {
-    allGames(last: 100, orderBy: startTime_DESC) @connection(key: "GameList_allGames", filters: []) {
+    allGames(last: 10, orderBy: startTime_DESC) @connection(key: "GameList_allGames", filters: []) {
       edges {
         node {
           ...Game_game

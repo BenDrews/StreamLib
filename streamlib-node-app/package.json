@@ -10,7 +10,9 @@
   "author": "Ben Drews and Markus Feng",
   "license": "ISC",
   "dependencies": {
-    "request": "^2.88.0"
+    "graphql-request": "^1.8.2",
+    "request": "^2.88.0",
+    "runeterra": "0.0.7"
   },
   "devDependencies": {
     "electron": "^7.1.1"

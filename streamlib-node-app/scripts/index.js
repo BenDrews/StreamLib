@@ -3,8 +3,16 @@ var authTokenStorage = 'StreamLib/auth-token';
 
 var authToken;
 
+const sampleGame = {
+  'startTime': 0,
+  'endTime': 0,
+  'result': 'victory',
+  'playerName': 'Xemacs',
+  'opponentName': 'Entropy',
+  'deckcode': 'CEBAKAIFEISDCMRVA4AQAFQ5D4QSMMZWAEBACBJLGYAA',
+}
+
 function main() {
-    var riotAPI = new RuneterraAPI();
     console.log('Running');
     var query = electron.remote.getGlobal('authQuery');
     if (query) {
@@ -20,6 +28,7 @@ function main() {
     else {
         document.getElementById('auth').innerHTML = 'Not authenticated.';
     }
+    updateStatus()
 }
 
 function getAuthToken() {

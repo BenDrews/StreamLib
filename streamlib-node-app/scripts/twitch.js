@@ -1,5 +1,7 @@
 var request = require('request');
 
+var streamID = null;
+
 function makeHeaders(token) {
     var headers = {
         'Accept': 'application/vnd.twitchtv.v5+json',
@@ -9,6 +11,10 @@ function makeHeaders(token) {
         headers['Authorization'] = 'OAuth ' + token;
     }
     return headers;
+}
+
+function onStreamStart() {
+
 }
 
 function getChannelInfo(token, callback) {
@@ -29,6 +35,27 @@ function getChannelInfo(token, callback) {
         };
         callback(resp);
     });
+}
+
+function getLiveStreamInfo(channelID, callback) {
+  var options = {
+      url: 'https://api.twitch.tv/kraken/stream/' + channelID,
+      headers: makeHeaders(null)
+  }
+  request.get(options, function (error, response, body) {
+      console.log('Get channel status code ' + response.statusCode);
+      var bs = JSON.parse(body);
+      var vs = bs["stream"];
+      var resp = {
+        twitchID: b["_id"],
+        game: b["game"],
+        delay: b["delay"],
+        createdAt: b["created_at"],
+        channelID: b["channel"]["_id"],
+        preview: b["preview"]["medium"]
+      };
+      callback(resp);
+  });
 }
 
 function getVideoInfo(channelID, mustBeRecording, callback) {

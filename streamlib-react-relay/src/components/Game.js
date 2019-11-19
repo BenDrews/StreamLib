@@ -16,13 +16,14 @@ class Game extends Component {
   }
 
   render() {
+    const stream = this.props.game.stream
     var bgColor = "LightGray"
     if (this.props.game.result === "victory") {
       bgColor = "LightBlue"
     } else if(this.props.game.result === "defeat") {
       bgColor = "LightPink"
     }
-    const previewImgSrc = this.props.game.stream.preview
+    const previewImgSrc = stream ? stream.preview : ''
     return (
       <div style={Object.assign({}, styles.main, {backgroundColor: bgColor})}>
         <div style={styles.streamPreview} onClick={this.onClickStream}>
