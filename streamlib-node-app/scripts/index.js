@@ -1,1 +1,1 @@
-console.log("Hello, world!");
+<script src="RuneterraAPI.js"></script>
