@@ -1,0 +1,12 @@
+{
+  "name": "streamlib-node-app",
+  "version": "0.0.1",
+  "description": "Node app for streamer to send data to StreamLib",
+  "main": "scripts/index.js",
+  "scripts": {
+    "start": "node scripts/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ben Drews and Markus Feng",
+  "license": "ISC"
+}
