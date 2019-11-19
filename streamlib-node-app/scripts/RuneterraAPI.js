@@ -13,13 +13,16 @@ class RuneterraAPI {
 
   async requestAPI(endpoint) {
 
-    let req = request.get(`http://localhost:${port}/${endpoint}`)
-      .on('response', function(response) {
-        console.log(response.statusCode) // 200
-        console.log(response.headers['content-type']) // 'image/png'
-        return response.JSON;
-      });
-    console.log(req);
+    let req = request.get(`http://localhost:${port}/${endpoint}`, null, function(error, response, body) {
+      console.log('error:', error);
+      console.log('statusCode:', response && response.statusCode);
+      console.log('body:', body);
+      // process here
+
+      // console.log(response.statusCode) // 200
+      // console.log(response.headers['content-type']) // 'image/png'
+      // return response.JSON;
+    });
   }
 
   async updateStatus() {
