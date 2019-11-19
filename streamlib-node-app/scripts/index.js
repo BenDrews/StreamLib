@@ -26,9 +26,15 @@ function getAuthToken() {
     return authToken;
 }
 
-function printInfo() {
-    getInfo(getAuthToken(), function(info) {
-        console.log(info);
+function printChannelInfo() {
+    getChannelInfo(getAuthToken(), function(info) {
+        console.dir(info);
+    });
+}
+
+function printVideoInfo() {
+    getVideoInfo(null, function(info) {
+        console.dir(info);
     });
 }
 
