@@ -1,6 +1,5 @@
 var electron = require('electron');
 var authTokenStorage = 'StreamLib/auth-token';
-var RuneterraAPI = 'RuneterraAPI';
 
 function main() {
     var riotAPI = new RuneterraAPI();

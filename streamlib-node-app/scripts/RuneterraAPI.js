@@ -11,15 +11,19 @@ class RuneterraAPI {
   }
   // We will look at static and subclassed methods shortly
 
-  async requestAPI(endpoint) {
+  requestAPI(endpoint) {
 
     let req = request.get(`http://localhost:${port}/${endpoint}`)
       .on('response', function(response) {
         console.log(response.statusCode) // 200
         console.log(response.headers['content-type']) // 'image/png'
         return response.JSON;
+      })
+      .on('error', function(error) {
+        console.log(error)
       });
     console.log(req);
+    return req;
   }
 
   async updateStatus() {
