@@ -2461,4 +2461,3 @@ type Viewer {
   hello(name: String): HelloPayload
   id: ID!
 }
-
