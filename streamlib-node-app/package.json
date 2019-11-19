@@ -4,9 +4,15 @@
   "description": "Node app for streamer to send data to StreamLib",
   "main": "scripts/index.js",
   "scripts": {
-    "start": "node scripts/index.js",
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ben Drews and Markus Feng",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "electron": "^7.1.1"
+  }
 }
