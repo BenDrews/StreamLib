@@ -1,7 +1,8 @@
 const port = 21337;
 
+var request = require('request');
 
-class RiotAPI {
+class RuneterraAPI {
   constructor() {
     this.status = 'inactive';
     this.deckCode = null;
@@ -10,39 +11,44 @@ class RiotAPI {
   }
   // We will look at static and subclassed methods shortly
 
-  requestAPI(endpoint) {
-    var request = new Request(`http://localhost:${port}/${endpoint}`);
-    var data = fetch(request).then(function(response) {
-      return response.JSON();
-    });
+  async requestAPI(endpoint) {
+
+    let req = request.get(`http://localhost:${port}/${endpoint}`)
+      .on('response', function(response) {
+        console.log(response.statusCode) // 200
+        console.log(response.headers['content-type']) // 'image/png'
+        return response.JSON;
+      });
+    console.log(req);
   }
 
-  updateStatus() {
-    var data = requestAPI('static-decklist');
+  async updateStatus() {
+    let data = await this.requestAPI('static-decklist');
     if (data.DeckCode === null) {
-      var status = 'inactive'
+      let status = 'inactive'
       console.log(status)
-      var deckcode = null;
+      let deckcode = null;
     } else {
-      var status = 'active'
-      var deckcode = data.DeckCode
-      var cards = data.CardsInDeck
+      let status = 'active'
+      console.log(data)
+      let deckcode = data.DeckCode
+      let cards = data.CardsInDeck
     }
     if (this.status !== status) {
       if (status === 'active') {
-        initGame()
+        this.initGame()
       } else {
-        completeGame()
+        this.completeGame()
       }
     }
   }
 
   initGame() {
-    var data = requestAPI('card-positions');
-    var playerName = data.PlayerName;
-    var opponentName = data.OpponentName;
-    var playerCards = data.Rectangles.filter(card => card.localPlayer).map(card => card.cardCode);
-    var enemyCards = data.Rectangles.filter(card => !card.localPlayer).map(card => card.cardCode);
+    let data = requestAPI('card-positions');
+    let playerName = data.PlayerName;
+    let opponentName = data.OpponentName;
+    let playerCards = data.Rectangles.filter(card => card.localPlayer).map(card => card.cardCode);
+    let enemyCards = data.Rectangles.filter(card => !card.localPlayer).map(card => card.cardCode);
 
     this.currentGame = {
       'playerName': playerName,
@@ -61,10 +67,6 @@ class RiotAPI {
     data = requestAPI('card-positions');
 
   }
-
-
 }
 
-module.exports = {
-    RiotAPI: RiotAPI
-}
+module.exports = RuneterraAPI;

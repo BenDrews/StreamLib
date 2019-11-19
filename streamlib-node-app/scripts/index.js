@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const url = require('url');
+const RuneterraAPI = require('./RuneterraAPI')
 
 function createWindow() {
     // Create the browser window.
@@ -13,6 +14,7 @@ function createWindow() {
 
     let authHost = 'localhost';
     let authPath = '/';
+    let riotAPI = new RuneterraAPI();
 
     win.webContents.on('will-redirect', function(event, urlString) {
         console.log('Redirect');
