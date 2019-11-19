@@ -6,7 +6,8 @@ function main() {
     var query = electron.remote.getGlobal('authQuery');
     if (query) {
         console.log('Found query');
-        var accessToken = query.accessToken;
+        var accessToken = query.access_token;
+        console.log('Access token: ' + accessToken);
         window.localStorage.setItem(authTokenStorage, accessToken);
     }
     var authToken = window.localStorage.getItem(authTokenStorage);
