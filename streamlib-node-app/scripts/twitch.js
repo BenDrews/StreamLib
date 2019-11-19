@@ -31,7 +31,7 @@ function getChannelInfo(token, callback) {
     });
 }
 
-function getVideoInfo(channelID, callback) {
+function getVideoInfo(channelID, mustBeRecording, callback) {
     var options = {
         url: 'https://api.twitch.tv/kraken/channels/' + channelID + '/videos',
         headers: makeHeaders(null)
@@ -43,7 +43,7 @@ function getVideoInfo(channelID, callback) {
         var recordingVideos = [];
         for (var i = 0; i < vs.length; i++) {
             var v = vs[i];
-            if (v["status"] === 'recording') {
+            if (!mustBeRecording || v["status"] === 'recording') {
                 recordingVideos.push(v);
             }
         }
