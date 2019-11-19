@@ -22,8 +22,7 @@ function getChannelInfo(token, callback) {
             name: b["display_name"],
             language: b["broadcaster_language"],
             mature: b["mature"],
-            logo: b["logo"],
-            streams: 
+            logo: b["logo"]
         };
         callback(resp);
     });
