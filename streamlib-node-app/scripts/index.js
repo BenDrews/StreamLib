@@ -1,30 +1,21 @@
-const { app, BrowserWindow } = require('electron');
-const url = require('url');
+var electron = require('electron');
+var authTokenStorage = 'StreamLib/auth-token';
 
-function createWindow() {
-    // Create the browser window.
-    let win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            nodeIntegration: true
-        }
-    });
-
-    let authHost = 'localhost';
-    let authPath = '/';
-
-    win.webContents.on('will-redirect', function(event, urlString) {
-        console.log('Redirect');
-        const urlObject = url.parse(urlString);
-        console.dir(urlObject);
-        if (urlObject.hostname === authHost && urlObject.pathname === authPath) {
-            console.log('Auth redirect');
-            event.preventDefault();
-            win.loadFile('page.html');
-        }
-    });
-    win.loadFile('index.html');
+function main() {
+    console.log('Running');
+    var query = electron.remote.getGlobal('authQuery');
+    if (query) {
+        console.log('Found query');
+        var accessToken = query.accessToken;
+        window.localStorage.setItem(authTokenStorage, accessToken);
+    }
+    var authToken = window.localStorage.getItem(authTokenStorage);
+    if (authToken) {
+        document.getElementById('auth').innerHTML = 'Authenticated.';
+    }
+    else {
+        document.getElementById('auth').innerHTML = 'Not authenticated.';
+    }
 }
 
-app.on('ready', createWindow);
+main();

@@ -2,7 +2,7 @@
   "name": "streamlib-node-app",
   "version": "0.0.1",
   "description": "Node app for streamer to send data to StreamLib",
-  "main": "scripts/index.js",
+  "main": "scripts/main.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"

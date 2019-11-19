@@ -7,8 +7,13 @@
     </head>
     <body>
         <div class="center">
-            <input class="button" type="button" onclick="window.location.href = 'https://id.twitch.tv/oauth2/authorize?client_id=yh4epzuv85ntcpyl6s38ompr7h5msa&response_type=token&redirect_uri=https://localhost';" value="Login" />
-            <a href="page.html">page</a>
+            <div id="auth"></div>
+            <br />
+            <div>
+                <input class="button" type="button" onclick="window.location.href = 'https://id.twitch.tv/oauth2/authorize?client_id=yh4epzuv85ntcpyl6s38ompr7h5msa&response_type=token&redirect_uri=https://localhost';" value="Login" />
+                <a href="page.html">page</a>
+            </div>
         </div>
+        <script src="scripts/index.js"></script>
     </body>
 </html>
