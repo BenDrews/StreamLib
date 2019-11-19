@@ -1,26 +1,27 @@
-import { fromEvent } from 'graphcool-lib'
+const { fromEvent } = require('graphcool-lib')
 const { DeckEncoder } = require('runeterra')
 
-module.exports = function recordGame(event) {
+module.exports = async function recordGame(event) {
   const deckcode = event.data.deckcode
   const lib = fromEvent(event)
   const client = lib.api('simple/v1')
-  const {existingDecks} = await client.request(`query {
-    allDecks(filters: {deck: ${deckcode}}, last: 1, orderBy: startTime_DESC) {
+  const deck = await client.request(`query {allGames(orderBy: startTime_DESC) {id}}`)
+  const existingDecks = await client.request(`query {
+    allDecks(filter: {deck: ${deckcode}}, last: 1, orderBy: id_DESC) {
       edges {
         node {
           id
         }
       }
     }
-  }`).then((response) => response['edges'])
+  }`).then((resp) => resp['edges'])
   if (existingDecks.length > 0) {
     const deckID = existingDecks[0]['id']
   } else {
-    const deckID = recordDeck(deckcode, client)
+    const deckID = await recordDeck(deckcode, client)
   }
 
-  const {gameID} = await client.request(`mutation {
+  const gameID = await client.request(`mutation {
     createGame(
       startTime: ${event.data.startTime},
       endTime: ${event.data.endTime},
@@ -30,7 +31,7 @@ module.exports = function recordGame(event) {
       deck: ${deckID}) {
         id
       }
-  }`).then((response) => response['id'])
+  }`).then((resp) => resp['id'])
 
   return {
     data: {
@@ -39,8 +40,9 @@ module.exports = function recordGame(event) {
   }
 }
 
-function recordDeck(deckcode, client) {
+async function recordDeck(deckcode, client) {
   const deckInput = deckcodeToInput(deckcode)
+  return await client.request(deckInput).then((resp) => resp['id'])
 }
 
 function factionsInputFromDeck(deck) {
@@ -51,11 +53,11 @@ function deckcodeToInput(deckcode) {
   const deck = DeckEncoder.decode(deckcode)
   const factionsInput = factionsFromDeck(deck)
   const cardsInput = cardsInputFromDeck(deck)
-  return await client.request(`mutation {
+  return `mutation {
     createDeck(factions: ${factionsInput}, deckcode: "${deckcode}", cards: ${cardsInput}) {
       id
     }
-  }`).then((response) => response['id'])
+  }`
 }
 
 function cardsInputFromDeck(deck) {

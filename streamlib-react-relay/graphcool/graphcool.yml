@@ -19,11 +19,11 @@ types: ./types.graphql
 
 
 functions:
-  hello:
+  recordGame:
     handler:
-      code: src/resolvers/recordGame.js
+      code: resolvers/recordGame.js
     type: resolver
-    schema: src/resolvers/recordGame.graphql
+    schema: resolvers/recordGame.graphql
 
 
 # Model/Relation permissions are used to limit the API access

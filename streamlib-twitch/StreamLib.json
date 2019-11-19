@@ -1,33 +1,11 @@
 {
   "allowHttpBackend": false,
-  "backendCommand": "node backend -c \"wvietse3riu718fwt6a24dia337imo\" -s \"jt5KLm7p+HuOZQezoHf97NV2amLJAliWR7pFSwmf9sI=\"",
+  "backendCommand": "node backend -c \"yh4epzuv85ntcpyl6s38ompr7h5msa\" -s \"Mt1zYw462iVaWJz34fmCXGOKhZUblktseZUb9EgcKKI=\"",
   "backendFolderName": "extension-getting-started\\services",
   "certificateExceptions": [],
-  "extensionViews": [
-    {
-      "id": "1",
-      "label": "test1",
-      "channelId": "90082275",
-      "configurationAnchor": "panel",
-      "displayChannelName": "assisstion",
-      "type": "panel",
-      "features": {
-        "isBitsEnabled": false,
-        "isChatEnabled": false,
-        "isSubscriptionStatusAvailable": false
-      },
-      "linked": false,
-      "linkedUserId": "",
-      "mode": "viewer",
-      "isPopout": false,
-      "role": "Broadcaster",
-      "orientation": "Portrait",
-      "frameSize": {
-        "width": 1280,
-        "height": 720
-      }
-    }
-  ],
+  "extensionViews": [],
+  "frontendCommand": "",
+  "frontendFolderName": "extension-getting-started\\public",
   "manifest": {
     "anchor": "panel",
     "assetUrls": [],
@@ -35,16 +13,16 @@
     "bitsEnabled": false,
     "canInstall": true,
     "configUrl": "https://localhost:8080/config.html",
-    "configurationLocation": "hosted",
+    "configurationLocation": "none",
     "description": "",
     "eulaTosUrl": "",
     "hasChatSupport": false,
     "iconUrl": "",
     "iconUrls": {},
-    "id": "wvietse3riu718fwt6a24dia337imo",
+    "id": "yh4epzuv85ntcpyl6s38ompr7h5msa",
     "installationCount": -42,
     "liveConfigUrl": "",
-    "name": "StreamLib",
+    "name": "StreamLib2",
     "panelHeight": 300,
     "privacyPolicyUrl": "",
     "requestIdentityLink": false,
@@ -63,21 +41,19 @@
       "panel": "https://localhost:8080/panel.html"
     },
     "views": {
-      "panel": {
-        "viewerUrl": "https://localhost:8080/panel.html",
-        "height": 300,
-        "canLinkExternalContent": false
-      },
       "config": {
-        "viewerUrl": "https://localhost:8080/config.html",
-        "canLinkExternalContent": false
+        "canLinkExternalContent": false,
+        "viewerUrl": "https://localhost:8080/config.html"
+      },
+      "panel": {
+        "canLinkExternalContent": false,
+        "height": 300,
+        "viewerUrl": "https://localhost:8080/panel.html"
       }
     },
     "whitelistedConfigUrls": [],
     "whitelistedPanelUrls": []
   },
-  "frontendCommand": "",
-  "frontendFolderName": "extension-getting-started\\public",
   "name": "StreamLib",
   "version": 1
 }

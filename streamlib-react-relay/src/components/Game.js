@@ -29,7 +29,7 @@ class Game extends Component {
           <div>{`${this.props.game.playerName} vs. ${this.props.game.opponentName}`}</div>
           <img src={previewImgSrc} alt="Preview" style={styles.streamPreviewImg}/>
           <div>Timestamp: {this.props.game.startTime}-{this.props.game.endTime}</div>
-          <div>{capitalize(this.props.game.result)}</div>
+          <b>{capitalize(this.props.game.result)}</b>
         </div>
         <div style={styles.infoPanel}>
 

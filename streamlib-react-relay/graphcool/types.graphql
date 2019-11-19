@@ -27,8 +27,8 @@ type Game @model {
   opponentName: String
   stream: Stream @relation(name: "StreamOnGame")
   deck: Deck @relation(name: "DeckOnGame")
-  alliedCardsSeen: [Card!]! @relation(name: "AlliedCardsOnGame")
-  enemyCardsSeen: [Card!]! @relation(name: "EnemyCardsOnGame")
+  alliedCardsSeen: [Card!]! @relation(name: "GameOnAlliedCard")
+  enemyCardsSeen: [Card!]! @relation(name: "GameOnEnemyCard")
 }
 
 type Deck @model {
@@ -48,8 +48,8 @@ type Card @model {
   setID: Int
   cardID: Int
   deck: Deck @relation(name: "DeckOnCard")
-  alliedGame: Game @relation(name: "alliedCardsSeen")
-  enemyGame: Game @relation(name: "EnemyCardsOnGame")
+  alliedGame: Game @relation(name: "GameOnAlliedCard")
+  enemyGame: Game @relation(name: "GameOnEnemyCard")
 }
 
 type Archetype @model {
