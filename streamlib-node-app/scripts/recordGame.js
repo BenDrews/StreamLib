@@ -9,13 +9,11 @@ module.exports = async function recordGame(data) {
   const client = new GraphQLClient(endpoint, { headers: {} })
 
   const deckcode = data.deckcode
-  const deck = await client.request(`query {allGames(orderBy: startTime_DESC) {id}}`)
   const existingDecks = await client.request(`query {
     allDecks(filter: {deckcode: "${deckcode}"}, last: 1, orderBy: id_DESC) {
         id
       }
   }`)
-  console.log(existingDecks);
   let deckResp = null
   if (existingDecks.length > 0) {
     deckResp = existingDecks.allDecks[0]
@@ -23,8 +21,6 @@ module.exports = async function recordGame(data) {
     deckResp = await recordDeck(deckcode, client)
     deckResp = deckResp.createDeck
   }
-  console.log("#######################")
-  console.log(data)
   const gameResp = await client.request(`mutation {
     createGame(
       startTime: ${data.startTime},
@@ -60,8 +56,6 @@ async function recordDeck(deckcode, client) {
 }
 
 function factionsInputFromDeck(deck) {
-  console.log(deck)
-  console.log(`[${deck.map((card) => `"${card.faction.shortCode}"`).filter(unique).join(',')}]`)
   return `[${deck.map((card) => `"${card.faction.shortCode}"`).filter(unique).join(',')}]`
 }
 

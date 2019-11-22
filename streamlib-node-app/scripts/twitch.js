@@ -14,8 +14,9 @@ function makeHeaders(token) {
 }
 
 function onStreamStart() {
-
+  const channel = getChannelInfo(token, recordChannel)
 }
+
 
 function getChannelInfo(token, callback) {
     var options = {
@@ -33,7 +34,7 @@ function getChannelInfo(token, callback) {
             mature: b["mature"],
             logo: b["logo"]
         };
-        callback(resp);
+        return callback(resp);
     });
 }
 

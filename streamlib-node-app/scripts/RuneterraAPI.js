@@ -54,7 +54,7 @@ function updateStatus() {
       if (status === 'active') {
         updateGame();
       }
-    });
+    }).catch();
     setTimeout(updateStatus, 1000)
   }
 

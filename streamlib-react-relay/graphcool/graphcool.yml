@@ -17,15 +17,6 @@
 # In the types.graphql you define your data schema
 types: ./types.graphql
 
-
-functions:
-  recordGame:
-    handler:
-      code: resolvers/recordGame.js
-    type: resolver
-    schema: resolvers/recordGame.graphql
-
-
 # Model/Relation permissions are used to limit the API access
 # To take the burden of thinking about those while development, we
 # preconfigured the wildcard ("*") permission that allows everything

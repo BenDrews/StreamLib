@@ -41,6 +41,10 @@ function printChannelInfo() {
     });
 }
 
+function printStreamInfo() {
+  onStreamStart();
+}
+
 function printVideoInfo() {
     getVideoInfo(document.getElementById("channelId").value, false, function(info) {
         console.dir(info);
