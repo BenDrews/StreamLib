@@ -41,13 +41,35 @@ function printChannelInfo() {
     });
 }
 
-function printStreamInfo() {
-  onStreamStart();
-}
-
 function printVideoInfo() {
     getVideoInfo(document.getElementById("channelId").value, false, function(info) {
         console.dir(info);
+    });
+}
+
+function startStreamListenerForChannel(channelId){
+    var started = false;
+    var delay = 5000;
+    setInterval(function() {
+        getLiveStreamInfo(channelId, function(info) {
+            if (info != null && !started) {
+                onStreamStart();
+                started = true;
+            }
+            if (info == null && started) {
+                onStreamEnd();
+                started = false;
+            }
+        });
+    }, delay);
+}
+
+// Make sure to call this function only once
+function startStreamListener() {
+    var token = getAuthToken();
+    getChannelInfo(token, function(info) {
+        var channelId = info.twitchID;
+        startStreamListenerForChannel(channelId);
     });
 }
 
