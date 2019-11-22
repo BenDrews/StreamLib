@@ -5,7 +5,7 @@ async function recordStream(data) {
   const client = new GraphQLClient(endpoint, { headers: {} });
   const streamResp = await client.request(`mutation {
     createStream(
-      twitchID: "${data.twitchID}",
+      twitchID: "${recordingVod.id}",
       url: "${data.url}",
       title: "${data.title}",
       preview: "${data.preview}") {

@@ -46,7 +46,14 @@ const node/*: ReaderFragment*/ = {
       }
     ]
   },
-  "argumentDefinitions": [],
+  "argumentDefinitions": [
+    {
+      "kind": "LocalArgument",
+      "name": "channelName",
+      "type": "String",
+      "defaultValue": null
+    }
+  ],
   "selections": [
     {
       "kind": "LinkedField",
@@ -128,5 +135,5 @@ const node/*: ReaderFragment*/ = {
   ]
 };
 // prettier-ignore
-(node/*: any*/).hash = '2e354807262ff216b6ce9d475d7a0d10';
+(node/*: any*/).hash = '79c8627584f58180bcc86e3006a650ca';
 module.exports = node;

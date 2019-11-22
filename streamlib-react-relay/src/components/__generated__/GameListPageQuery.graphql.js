@@ -1,6 +1,6 @@
 /**
  * @flow
- * @relayHash fb393c81b14ec850ada8a7a0ba611de6
+ * @relayHash fea628cebe3bf40b8d94ae1511238ba8
  */
 
 /* eslint-disable */
@@ -10,7 +10,9 @@
 /*::
 import type { ConcreteRequest } from 'relay-runtime';
 type GameList_viewer$ref = any;
-export type GameListPageQueryVariables = {||};
+export type GameListPageQueryVariables = {|
+  channelName?: ?string
+|};
 export type GameListPageQueryResponse = {|
   +viewer: {|
     +$fragmentRefs: GameList_viewer$ref
@@ -26,13 +28,13 @@ export type GameListPageQuery = {|
 /*
 query GameListPageQuery {
   viewer {
-    ...GameList_viewer
+    ...GameList_viewer_2vNYt5
     id
   }
 }
 
-fragment GameList_viewer on Viewer {
-  allGames(last: 100, orderBy: startTime_DESC) {
+fragment GameList_viewer_2vNYt5 on Viewer {
+  allGames(last: 20, orderBy: id_ASC) {
     edges {
       node {
         ...Game_game
@@ -70,17 +72,25 @@ fragment Game_game on Game {
 const node/*: ConcreteRequest*/ = (function(){
 var v0 = [
   {
+    "kind": "LocalArgument",
+    "name": "channelName",
+    "type": "String",
+    "defaultValue": null
+  }
+],
+v1 = [
+  {
     "kind": "Literal",
     "name": "last",
-    "value": 100
+    "value": 20
   },
   {
     "kind": "Literal",
     "name": "orderBy",
-    "value": "startTime_DESC"
+    "value": "id_ASC"
   }
 ],
-v1 = {
+v2 = {
   "kind": "ScalarField",
   "alias": null,
   "name": "id",
@@ -94,7 +104,7 @@ return {
     "name": "GameListPageQuery",
     "type": "Query",
     "metadata": null,
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -108,7 +118,13 @@ return {
           {
             "kind": "FragmentSpread",
             "name": "GameList_viewer",
-            "args": null
+            "args": [
+              {
+                "kind": "Variable",
+                "name": "channelName",
+                "variableName": "channelName"
+              }
+            ]
           }
         ]
       }
@@ -117,7 +133,7 @@ return {
   "operation": {
     "kind": "Operation",
     "name": "GameListPageQuery",
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "selections": [
       {
         "kind": "LinkedField",
@@ -132,8 +148,8 @@ return {
             "kind": "LinkedField",
             "alias": null,
             "name": "allGames",
-            "storageKey": "allGames(last:100,orderBy:\"startTime_DESC\")",
-            "args": (v0/*: any*/),
+            "storageKey": "allGames(last:20,orderBy:\"id_ASC\")",
+            "args": (v1/*: any*/),
             "concreteType": "GameConnection",
             "plural": false,
             "selections": [
@@ -155,7 +171,7 @@ return {
                     "concreteType": "Game",
                     "plural": false,
                     "selections": [
-                      (v1/*: any*/),
+                      (v2/*: any*/),
                       {
                         "kind": "ScalarField",
                         "alias": null,
@@ -214,7 +230,7 @@ return {
                             "args": null,
                             "storageKey": null
                           },
-                          (v1/*: any*/)
+                          (v2/*: any*/)
                         ]
                       },
                       {
@@ -233,7 +249,7 @@ return {
                             "args": null,
                             "storageKey": null
                           },
-                          (v1/*: any*/)
+                          (v2/*: any*/)
                         ]
                       },
                       {
@@ -285,12 +301,12 @@ return {
             "kind": "LinkedHandle",
             "alias": null,
             "name": "allGames",
-            "args": (v0/*: any*/),
+            "args": (v1/*: any*/),
             "handle": "connection",
             "key": "GameList_allGames",
             "filters": []
           },
-          (v1/*: any*/)
+          (v2/*: any*/)
         ]
       }
     ]
@@ -299,11 +315,11 @@ return {
     "operationKind": "query",
     "name": "GameListPageQuery",
     "id": null,
-    "text": "query GameListPageQuery {\n  viewer {\n    ...GameList_viewer\n    id\n  }\n}\n\nfragment GameList_viewer on Viewer {\n  allGames(last: 100, orderBy: startTime_DESC) {\n    edges {\n      node {\n        ...Game_game\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Game_game on Game {\n  id\n  startTime\n  endTime\n  playerName\n  opponentName\n  result\n  stream {\n    preview\n    url\n    id\n  }\n  deck {\n    deckcode\n    id\n  }\n}\n",
+    "text": "query GameListPageQuery {\n  viewer {\n    ...GameList_viewer_2vNYt5\n    id\n  }\n}\n\nfragment GameList_viewer_2vNYt5 on Viewer {\n  allGames(last: 20, orderBy: id_ASC) {\n    edges {\n      node {\n        ...Game_game\n        id\n        __typename\n      }\n      cursor\n    }\n    pageInfo {\n      hasPreviousPage\n      startCursor\n    }\n  }\n}\n\nfragment Game_game on Game {\n  id\n  startTime\n  endTime\n  playerName\n  opponentName\n  result\n  stream {\n    preview\n    url\n    id\n  }\n  deck {\n    deckcode\n    id\n  }\n}\n",
     "metadata": {}
   }
 };
 })();
 // prettier-ignore
-(node/*: any*/).hash = '6fafed651c042a087971aa3bea759d1c';
+(node/*: any*/).hash = 'e40028f9da365c5b3d5536f08a38b8b4';
 module.exports = node;

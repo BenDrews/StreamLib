@@ -7,9 +7,9 @@ import environment from '../Environment'
 import GameList from './GameList'
 
 const GameListPageQuery = graphql`
-  query GameListPageQuery {
+  query GameListPageQuery($channelName: String) {
     viewer {
-      ...GameList_viewer
+      ...GameList_viewer @arguments(channelName: $channelName)
     }
   }
 `
@@ -29,6 +29,9 @@ class GameListPage extends Component {
           }
           return <div>Loading</div>
         }}
+      variables={{
+        channelName: props.channelName,
+      }}
       />
     )
   }

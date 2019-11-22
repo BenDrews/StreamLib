@@ -1,6 +1,7 @@
 var request = require('request');
 
 var currentStream = null;
+var recordingVod = null;
 
 function makeHeaders(token) {
     var headers = {
@@ -16,11 +17,15 @@ function makeHeaders(token) {
 async function onStreamStart() {
   getChannelInfo(getAuthToken(), async function(resp) {
     currentChannel = await fetchChannel(resp);
-    currentStream = getLiveStreamInfo(currentChannel.twitchID, recordStream);
+    getVideoInfo(currentChannel.twitchID, true, async function (resp) {
+      currentStream = getLiveStreamInfo(currentChannel.twitchID, recordStream);
+    })
   })
 }
 
-function onStreamEn
+function onStreamEnd() {
+  console.log('End')
+}
 
 
 function getChannelInfo(token, callback) {

@@ -43,25 +43,35 @@ function updateStatus() {
       }
       if (newStatus !== status) {
         status = newStatus
-        console.log("WE HERE")
         if (status === 'inactive') {
-          console.log("###############################")
-          completeGame();
+          if (currentStream) {
+            completeGame();
+          }
+        } else {
+          if (currentStream) {
+            var startTime = getStreamTime()
+            }
         }
       }
       if (status === 'active') {
+        if (!startTime) {
+          var startTime =
+        }
         updateGame();
       }
     }).catch();
     setTimeout(updateStatus, 1000)
   }
 
+function getStreamTime() {
+  return = (new Date()).getTime() - (new Date(currentStream.createdAt)).getTime()
+
+}
+
 function updateGame() {
     requestAPI('positional-rectangles').then(data => {
       let playerName = data.PlayerName;
       let opponentName = data.OpponentName;
-      console.log("DATA");
-      console.log(data);
       let playerCards = data.Rectangles
         .filter(card => card.localPlayer)
         .map(card => card.cardCode)
@@ -79,13 +89,13 @@ function updateGame() {
         'opponentName': opponentName,
         'alliedCardsSeen': playerCards,
         'enemyCardsSeen': enemyCards,
-        'startTime': 0,
-        'endTime': 10,
       }
     });
   }
 
 function completeGame() {
+    currentGame.startTime = startTime
+    currentGame.endTime = getStreamTime();
     completedGames.push(currentGame);
     requestAPI('game-result').then(data => {
       currentGame.result = data.LocalPlayerWon ? 'victory' : 'defeat'

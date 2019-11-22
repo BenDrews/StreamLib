@@ -5,8 +5,8 @@ const querystring = require('querystring');
 function createWindow() {
     // Create the browser window.
     let win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 300,
+        height: 200,
         webPreferences: {
             nodeIntegration: true
         }
