@@ -5,6 +5,7 @@ var unique = (value, index, self) => {
   return self.indexOf(value) === index
 }
 var status = 'inactive';
+var startTime = null;
 var deckcode = null;
 var cards = null;
 var completedGames = [];
@@ -49,13 +50,13 @@ function updateStatus() {
           }
         } else {
           if (currentStream) {
-            var startTime = getStreamTime()
+            startTime = getStreamTime()
             }
         }
       }
       if (status === 'active') {
         if (!startTime) {
-          var startTime =
+          startTime = getStreamTime()
         }
         updateGame();
       }
@@ -64,8 +65,11 @@ function updateStatus() {
   }
 
 function getStreamTime() {
-  return = (new Date()).getTime() - (new Date(currentStream.createdAt)).getTime()
-
+  if(currentStream) {
+    return (new Date()).getTime() - (new Date(currentStream.createdAt)).getTime()
+  } else {
+    return new Date(0);
+  }
 }
 
 function updateGame() {
@@ -94,7 +98,7 @@ function updateGame() {
   }
 
 function completeGame() {
-    currentGame.startTime = startTime
+    currentGame.startTime = startTime;
     currentGame.endTime = getStreamTime();
     completedGames.push(currentGame);
     requestAPI('game-result').then(data => {

@@ -34,9 +34,6 @@ export default createFragmentContainer(GameList, {viewer: graphql`
     allGames(
       last: 20,
       orderBy: id_ASC,
-      filter: {
-        playerName: $channelName
-      }
     ) @connection(key:"GameList_allGames", filters: []){
       edges {
         node{

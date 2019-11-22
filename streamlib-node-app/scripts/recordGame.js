@@ -43,6 +43,17 @@ async function recordGame(data) {
     }
   }`)
 
+  await client.request(`mutation {
+    addToStreamOnGame(
+      streamStreamId: "${currentStream.id}",
+      gamesGameId: "${gameResp.createGame.id}"
+    ) {
+      gamesGame {
+        id
+      }
+    }
+  }`)
+
   return {
     data: {
       'id': gameResp.createGame.id

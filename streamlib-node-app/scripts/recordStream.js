@@ -5,8 +5,8 @@ async function recordStream(data) {
   const client = new GraphQLClient(endpoint, { headers: {} });
   const streamResp = await client.request(`mutation {
     createStream(
-      twitchID: "${recordingVod.id}",
-      url: "${data.url}",
+      twitchID: "${recordingVod.twitchID}",
+      url: "${recordingVod.url}",
       title: "${data.title}",
       preview: "${data.preview}") {
         id
@@ -25,5 +25,6 @@ async function recordStream(data) {
       }
     }
   }`)
+  streamResp.createStream.createdAt = data.createdAt;
   return streamResp.createStream;
 }

@@ -18,7 +18,10 @@ async function onStreamStart() {
   getChannelInfo(getAuthToken(), async function(resp) {
     currentChannel = await fetchChannel(resp);
     getVideoInfo(currentChannel.twitchID, true, async function (resp) {
-      currentStream = getLiveStreamInfo(currentChannel.twitchID, recordStream);
+      recordingVod = resp[0]
+      getLiveStreamInfo(currentChannel.twitchID, async function (resp) {
+        currentStream = await recordStream(resp);
+      });
     })
   })
 }
@@ -65,10 +68,13 @@ function getLiveStreamInfo(channelID, callback) {
                 twitchID: b["_id"],
                 game: b["game"],
                 delay: b["delay"],
+                title: b["channel"]["status"],
                 createdAt: b["created_at"],
                 channelID: b["channel"]["_id"],
                 preview: b["preview"]["medium"]
             };
+            console.log("STREAM RESP")
+            console.log(resp)
             callback(resp);
         }
     });

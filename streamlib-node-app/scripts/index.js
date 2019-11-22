@@ -29,6 +29,7 @@ function main() {
         document.getElementById('auth').innerHTML = 'Not authenticated.';
     }
     updateStatus()
+    startStreamListener()
 }
 
 function getAuthToken() {
