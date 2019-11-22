@@ -1,10 +1,10 @@
-const { DeckEncoder } = require('runeterra')
-const { request, GraphQLClient } = require('graphql-request')
-const unique = (value, index, self) => {
+var { DeckEncoder } = require('runeterra')
+var { request, GraphQLClient } = require('graphql-request')
+var unique = (value, index, self) => {
   return self.indexOf(value) === index
 }
 
-module.exports = async function recordGame(data) {
+async function recordGame(data) {
   const endpoint = "https://api.graph.cool/simple/v1/ck2rbhj6p08or0180oh3jb5q3"
   const client = new GraphQLClient(endpoint, { headers: {} })
 

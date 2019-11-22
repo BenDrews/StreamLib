@@ -1,6 +1,6 @@
 var request = require('request');
 
-var streamID = null;
+var currentStream = null;
 
 function makeHeaders(token) {
     var headers = {
@@ -13,8 +13,11 @@ function makeHeaders(token) {
     return headers;
 }
 
-function onStreamStart() {
-  const channel = getChannelInfo(token, recordChannel)
+async function onStreamStart() {
+  getChannelInfo(getAuthToken(), async function(resp) {
+    currentChannel = await fetchChannel(resp);
+    currentStream = getLiveStreamInfo(currentChannel.twitchID, recordStream);
+  })
 }
 
 
@@ -34,13 +37,13 @@ function getChannelInfo(token, callback) {
             mature: b["mature"],
             logo: b["logo"]
         };
-        return callback(resp);
+        callback(resp);
     });
 }
 
 function getLiveStreamInfo(channelID, callback) {
   var options = {
-      url: 'https://api.twitch.tv/kraken/stream/' + channelID,
+      url: 'https://api.twitch.tv/kraken/streams/' + channelID,
       headers: makeHeaders(null)
   }
   request.get(options, function (error, response, body) {
@@ -48,14 +51,14 @@ function getLiveStreamInfo(channelID, callback) {
       var bs = JSON.parse(body);
       var vs = bs["stream"];
       var resp = {
-        twitchID: b["_id"],
-        game: b["game"],
-        delay: b["delay"],
-        createdAt: b["created_at"],
-        channelID: b["channel"]["_id"],
-        preview: b["preview"]["medium"]
+        twitchID: vs["_id"],
+        game: vs["game"],
+        delay: vs["delay"],
+        createdAt: vs["created_at"],
+        channelID: vs["channel"]["_id"],
+        preview: vs["preview"]["medium"]
       };
-      callback(resp);
+      return callback(resp);
   });
 }
 

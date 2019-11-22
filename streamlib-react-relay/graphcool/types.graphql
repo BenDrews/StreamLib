@@ -61,7 +61,7 @@ type Archetype @model {
 
 type Stream @model {
   id: ID! @isUnique
-  twitchID: Int
+  twitchID: String
   url: String
   title: String
   channel: Channel @relation(name: "ChannelOnStream")
@@ -73,7 +73,7 @@ type Stream @model {
 
 type Channel @model {
   id: ID! @isUnique
-  twitchID: Int
+  twitchID: String
   url: String
   name: String
   language: String

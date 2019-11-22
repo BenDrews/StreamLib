@@ -1,5 +1,4 @@
 const port = 21337;
-const recordGame = require('./scripts/recordGame');
 var request = require('request');
 var electron = require('electron');
 var unique = (value, index, self) => {
@@ -17,7 +16,6 @@ var currentGame = {'alliedCardsSeen': null, 'enemyCardsSeen': null};
 function requestAPI(endpoint) {
     return new Promise(function(resolve, reject) {
       request.get(`http://localhost:${port}/${endpoint}`, null, function(error, response, body) {
-        console.log('error:', error);
         console.log('statusCode:', response && response.statusCode);
         if (error !== null) {
           reject(error);
