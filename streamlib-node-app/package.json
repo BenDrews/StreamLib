@@ -15,6 +15,6 @@
     "runeterra": "0.0.7"
   },
   "devDependencies": {
-    "electron": "^7.1.1"
+    "electron": "^18.3.7"
   }
 }
